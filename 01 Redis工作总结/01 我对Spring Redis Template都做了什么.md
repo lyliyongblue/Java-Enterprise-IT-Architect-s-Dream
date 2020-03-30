@@ -180,3 +180,51 @@ spring:
 spring config配置类的编写，在redis的相关配置时，主要就是针对Key、Value的Serializer配置。
 
 
+### 使用Redis，基于Lua实现站内信数据存储以及接口提供
+
+send_message.lua 
+
+
+
+```lua
+-- 1、用户消息列表KEY
+local user_msg_list_key=KEYS[1];
+-- 2、用户指定类型的消息-未读计数KEY
+local user_msg_unread_count_key=KEYS[2];
+-- 2、用户所有消息-未读计数KEY
+local user_msg_unread_total_count_key=KEYS[3];
+
+-- 消息对象Json
+local msg_info=ARGV[1];
+-- 消息的主键ID
+local msg_id=ARGV[2];
+
+-- 检查消息是否已经存在 ZCOUNT key min max
+local count = redis.call("zcount", user_msg_list_key, msg_id, msg_id);
+-- count不等于0，则说明已经存在该消息，直接返回false，代表失败
+if count ~= 0 then
+	return false;
+end
+
+-- 放入消息到zset中 ZADD key score member [[score member] [score member] ...]
+redis.call("zadd", user_msg_list_key, msg_id, msg_info);
+-- 单个类型的消息计数器 +1
+redis.call("incr", user_msg_unread_count_key);
+-- 用户所有未读消息计数器 +1
+redis.call("incr", user_msg_unread_total_count_key);
+
+-- 有效期设置30天
+redis.call("expire", user_msg_list_key, 2592000);
+redis.call("expire", user_msg_unread_count_key, 2592000);
+redis.call("expire", user_msg_unread_total_count_key, 2592000);
+
+return true;
+```
+
+### 使用Redis，基于Lua来做Oauth2的授权信息存储
+
+
+### 使用Redis，基于Lua做数据统计
+
+
+### 使用Redis，提供数据刷新服务基础实现
