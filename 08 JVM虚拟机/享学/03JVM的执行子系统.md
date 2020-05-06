@@ -564,9 +564,12 @@ field {
 ![avatar](./images/class/通过Classpy工具field.png)
 
 
-
-
 ### 字节码指令集
+
+指令 1 字节 （0 ~ 255）256个特地的数字，指令数不能超过256个
+
+> 参考地址： https://kknews.cc/code/za6a8ng.html
+
 
 | 指令集大类 | 指令 | 描述 |
 | ---- | ---- | ---- |
@@ -582,6 +585,9 @@ field {
 |  | dconst_1 | 将double类型常量1压入栈 |
 | 将基本类型压入栈 | bipush 59 | 将一个8位带符号整数压入栈（59的数值） |
 |  | sipush 300 | 将16位带符号整数压入栈（300的数值） |
+|  | ldc    | 把常量池中的项压入栈 |
+|  | ldc_w  | 把常量池中的项压入栈（使用宽索引） |
+|  | ldc2_w | 把常量池中long类型或者double类型的项压入栈（使用宽索引） |
 | 从栈中的局部变量中装载值的指令 | iload | 从局部变量中装载的int类型值 |
 |  | lload | 从局部变量中装载long类型值 |
 |  | fload | 从局部变量中装载float类型值 |
@@ -601,6 +607,17 @@ field {
 |  | baload | 从数组中装载byte类型或boolean类型值 |
 |  | caload | 从数组中装载char类型值 |
 |  | saload | 从数组中装载short类型值 |
+| wide指令 | wide | 使用附加字节扩展局部变量索引 |
+| 通用(无类型）栈操作 | nop     | 不做任何操作                                                             |
+|  | pop     | 弹出栈顶端一个字长的内容                                                 |
+|  | pop2    | 弹出栈顶端两个字长的内容                                                 |
+|  | dup     | 复制栈顶部一个字长内容                                                   |
+|  | dup_x1  | 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的两个字长的内容压入栈 |
+|  | dup_x2  | 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈 |
+|  | dup2    | 复制栈顶部两个字长内容                                                   |
+|  | dup2_x1 | 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈 |
+|  | dup2_x2 | 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的四个字长的内容压入栈 |
+|  | swap    | 交换栈顶部两个字长内容                                                   |
 | 将栈中的值存入局部变量的指令 | istore | 将int类型值存入局部变量 |
 |  | lstore   | 将long类型值存入局部变量                      |
 |  | fstore   | 将float类型值存入局部变量                     |
@@ -714,15 +731,164 @@ field {
 |  | jsr     | 跳转到子例程           |
 |  | jsr_w   | 跳转到子例程（宽索引） |
 |  | rct     | 从子例程返回           |
+| 方法调用指令 | invokcvirtual   | 运行时按照对象的类来调用实例方法 |
+|  | invokespecial   | 根据编译时类型来调用实例方法     |
+|  | invokestatic    | 调用类（静态）方法               |
+|  | invokcinterface | 调用接口方法                     |
+| 方法返回指令 | ireturn | 从方法中返回int类型的数据     |
+|  | lreturn | 从方法中返回long类型的数据    |
+|  | freturn | 从方法中返回float类型的数据   |
+|  | dreturn | 从方法中返回double类型的数据  |
+|  | areturn | 从方法中返回引用类型的数据    |
+|  | return  | 从方法中返回，返回值为void    |
+| 线程同步 | monitorenter | 进入并获取对象监视器  |
+|  | monitorexit  | 释放并退出对象监视器  |
 
 
+JVM指令助记符
+
+| 指令集大类 | 指令 |
+| ---- | ---- |
+| 变量到操作数栈：            | iload,iload_,lload,lload_,fload,fload_,dload,dload_,aload,aload_
+| 操作数栈到变量：            | istore,istore_,lstore,lstore_,fstore,fstore_,dstore,dstor_,astore,astore_                                                                                    |
+| 常数到操作数栈：            | bipush,sipush,ldc,ldc_w,ldc2_w,aconst_null,iconst_ml,iconst_,lconst_,fconst_,dconst_                                                                         |
+| 加：                        | iadd,ladd,fadd,dadd                                                                                                                                          |
+| 减：                        | isub,lsub,fsub,dsub                                                                                                                                          |
+| 乘：                        | imul,lmul,fmul,dmul                                                                                                                                          |
+| 除：                        | idiv,ldiv,fdiv,ddiv                                                                                                                                          |
+| 余数：                      | irem,lrem,frem,drem                                                                                                                                          |
+| 取负：                      | ineg,lneg,fneg,dneg                                                                                                                                          |
+| 移位：                      | ishl,lshr,iushr,lshl,lshr,lushr                                                                                                                              |
+| 按位或：                    | ior,lor                                                                                                                                                      |
+| 按位与：                    | iand,land                                                                                                                                                    |
+| 按位异或：                  | ixor,lxor                                                                                                                                                    |
+| 类型转换：                  | i2l,i2f,i2d,l2f,l2d,f2d(放宽数值转换)                                                                                                                        |
+|                             | i2b,i2c,i2s,l2i,f2i,f2l,d2i,d2l,d2f(缩窄数值转换)                                                                                                            |
+| 创建类实便：                | new                                                                                                                                                          |
+| 创建新数组：                | newarray,anewarray,multianwarray                                                                                                                             |
+| 访问类的域和类实例域：      | getfield,putfield,getstatic,putstatic                                                                                                                        |
+| 把数据装载到操作数栈：      | baload,caload,saload,iaload,laload,faload,daload,aaload                                                                                                      |
+| 从操作数栈存存储到数组：    | bastore,castore,sastore,iastore,lastore,fastore,dastore,aastore                                                                                              |
+| 获取数组长度：              | arraylength                                                                                                                                                  |
+| 检相类实例或数组属性：      | instanceof,checkcast                                                                                                                                         |
+| 操作数栈管理：              | pop,pop2,dup,dup2,dup_xl,dup2_xl,dup_x2,dup2_x2,swap                                                                                                         |
+| 有条件转移：                | ifeq,iflt,ifle,ifne,ifgt,ifge,ifnull,ifnonnull,if_icmpeq,if_icmpene,if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne,lcmp,fcmpl,fcmpg,dcmpl,dcmpg |
+| 复合条件转移：              | tableswitch,lookupswitch                                                                                                                                     |
+| 无条件转移：                | goto,goto_w,jsr,jsr_w,ret                                                                                                                                    |
+| 调度对象的实便方法：        | invokevirtual                                                                                                                                                |
+| 调用由接口实现的方法：      | invokeinterface                                                                                                                                              |
+| 调用需要特殊处理的实例方法：| invokespecial                                                                                                                                                |
+| 调用命名类中的静态方法：    | invokestatic                                                                                                                                                 |
+| 方法返回：                  | ireturn,lreturn,freturn,dreturn,areturn,return                                                                                                               |
+| 异常：                      | athrow                                                                                                                                                       |
+| finally关键字的实现使用：   | jsr,jsr_w,ret                                                                                                                                                |
 
 
+#### 基于栈的字节码解释执行引擎
+- 基于栈的指令集 与 基于寄存器的指令集
+- 基于栈的解释执行过程：
+```java
+public class Test {
+    // TODO ...
+    public int calc () {
+        int a = 100;
+        int b = 200;
+        int c = 300;
+        return (a + b) * c;
+    }
+}
+```
 
+#### 类记载机制
+![avatar](./images/class/类加载过程.png)
+类的初始化，有且仅有5种情况才必须对类进行初始化：
+- new, getstatic, putstatic, invokestatic
+- 对类进行反射调用
+- 初始化一个类，如果父类还有初始化的时候，先触发父类的初始化
+- 指定一个执行main的类，初始化主类
+- 动态语言支持
 
+```java
+package com.liyong.system;
 
-ldc 把常量池中的项压入栈
+public class SuperClazz {
+    static {
+        System.out.println("super class init");
+    }
+    
+    public static int value = 123;
+    public static final String HELLO_WORLD = "Hello, world!";
+    public static final int WHAT = value;
+}
+```
 
-ldc_w 把常量池中的项压入栈（使用宽索引）
+```java
+package com.liyong.system;
 
-ldc2_w 把常量池中long类型或者double类型的项压入栈（使用宽索引）
+public class SubClazz extends SuperClazz {
+    static {
+        System.out.println("sub class init");
+    }   
+}
+```
+
+```java
+package com.liyong.system;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(SubClazz.value);
+    }
+}
+```
+输出结果：
+```shell script
+super class init
+123
+```
+
+> 总结： 通过子类引用父类的静态变量，父类Class初始化了，而子类的Class没有初始化
+
+```java
+package com.liyong.system;
+
+public class Main {
+    public static void main(String[] args) {
+        SuperClazz[] sca = new SuperClazz[10];
+    }
+}
+```
+> 总结，上面的这段代码没有输出结果，父类Class的数组申明没有任何Class初始化
+
+```java
+package com.liyong.system;
+
+public class Main {
+    public static void main(String[] args) {
+    	System.out.println(SubClazz.HELLO_WORLD);
+    }
+}
+```
+
+输出结果：
+```shell script
+Hello, world!
+```
+
+> 总结：两个类都没有进行初始化，字符串常量在编译时，直接编译到Main.class中了。
+
+```java
+package com.liyong.system;
+
+public class Main {
+    public static void main(String[] args) {
+    	System.out.println(SubClazz.WHAT);
+    }
+}
+```
+输出结果：
+```shell script
+super class init
+123
+```
+> 总结：super class初始化了，引用了SuperClazz的非字符串常量。
