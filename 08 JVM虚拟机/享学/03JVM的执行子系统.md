@@ -340,15 +340,389 @@ CONSTANT_Integer {
 > - java中short, char, byte, boolean使用int来表示，boolean数组则用byte数组来表示（1个byte表示1个boolean元素）
 
 ---
+tag=4
+结构： 
+```shell script
+CONSTANT_Float {
+  u1 tag;
+  u4 bytes;
+}
+```
+实例图片：
+![avatar](./images/class/通过Classpy工具constant-tag4.png)  
+```shell script
+CONSTANT_Integer {
+    tag: 4;
+    bytes: 1148846408;
+}
+```
+> 该float的值为1000.02，但是是float型，第一位是符号位，8位是指数位，23位是尾数为，这个现实是`Classpy`的显示bug。
+
+---
+tag=5
+结构：
+```shell script
+CONSTANT_Long {
+  u1 tag;
+  u4 high_bytes;
+  u4 low_bytes;
+}
+```
+实例图片
+![avatar](./images/class/通过Classpy工具constant-tag5.png) 
+```shell script
+CONSTANT_Long {
+  tag 5;
+  high_bytes: 0x00_00_00_00;
+  low_bytes: 0x00_00_03_E8;
+}
+```
+---
+tag=6
+```shell script
+CONSTANT_Double {
+    u1 tag;
+    u4 high_bytes;
+    u4 low_bytes;
+}
+```
+
+> tag=6，双精度浮点数
 
 
+---
+tag=7
+```shell script
+CONSTANT_Class {
+    u1 tag;
+    u2 name_index;
+}
+```
+
+
+> 表示一个类或接口，注意不是field的类型或method的参数类型、返回值类型。
+> name_index是常量池索引，该索引处常量肯定是一个CONSTANT_Utf8_info
+
+---
+tag=8
+```shell script
+CONSTANT_String {
+    u1 tag;
+    u2 string_index;
+}
+```
+
+
+> tag=8，表示一个常量字符串，string_index是常量池索引，
+> 该索引处常量肯定是一个CONSTANT_Utf8_info，存储着该字符串的值
+
+---
+tag=9
+```shell script
+CONSTANT_Fieldref {
+    u1 tag;
+    u2 class_index;
+    u2 name_and_type_index;
+}
+```
+
+> class_index是常量池中一个CONSTANT_Class类型常量（类／接口）索引，表示field所属类。
+> name_and_type_index是常量池中一个CONSTANT_NameAndType（见下文）类型常量索引，表示field的名称和类型。
+ 
+
+---
+tag=10
+```shell script
+CONSTANT_Methodref {
+  u1 tag;
+  u2 class_index;
+  u2 name_and_type_index;
+}
+```
+
+
+> tag=10，表示一个引用method信息，实例method。
+> class_index是常量池中一个CONSTANT_Class_info类型常量（这里只能是类）索引，表示method所属类。
+> name_and_type_index是常量池中一个CONSTANT_NameAndType_info类型常量索引，表示method的名称和参数，返回值信息。
+
+
+---
+tag=11
+
+
+---
+tag=12
+```shell script
+CONSTANT_NameAndType {
+    u1 tag;
+    u2 name_index;
+    u2 descriptor_index;
+}
+```
+
+> tag=12，存储`field`或`method`的名称，类型等信息，可以看出它又是两个引用。
+> name_index指向一个CONSTANT_Utf8_info，表示字段或方法的非全限定名称。
+> descriptor_index也指向一个CONSTANT_Utf8_info，表示该`field`或`method`的描述信息。
+  
+
+---
+descriptor
+descriptor用一个字符串CONSTANT_Utf8_info保存。
+
+字段描述符（FieldType），FieldType可以是基本类型：
+- B(byte)
+- C(char)
+- D(double)
+- F(float)
+- I(int)
+- J(long)
+- S(short)
+- Z(boolean)
+- 对象类型：L+全限定类名
+- 数组类型：[+元素类型
+```java
+int a; // I
+Integer b; //Ljava/lang/Integer
+double[] c; //[D
+double[][] d; //[[D
+Object[] e; //[Ljava/lang/Object
+Object[][][] f; //[[[Ljava/lang/Object
+```
+
+
+
+---
+tag=15
+```shell script
+CONSTANT_MethodHandler {
+  u1 tag;
+  u1 reference_kind;
+  u2 reference_index;
+}
+```
+> tag=15，方法句柄，比如获取一个类静态字段，实例字段，调用一个方法，构造器等都会转化成一个句柄引用。
+
+---
+tag=16
+
+
+---
+tag=18
+
+
+---
 
 
 
 5. access flags  
 access flags表示类，接口，字段，方法的访问控制和修饰信息。
 
+| Access Flag(u2) | Value | 作用对象 |
+| ---- | ---- | ---- |
+| ACC_PUBLIC | 0x0001 | class, inner, field, method |
+| ACC_PRIVATE | 0x0002 | inner, field, method |
+| ACC_PROTECTED | 0x0004 | inner, field, method |
+| ACC_STATIC | 0x0008 | inner, field, method |
+| ACC_FINAL | 0x0010 | class, inner, field, method |
+| ACC_SUPER | 0x0020 | class |
+| ACC_SYNCHRONIZED | 0x0020 | method |
+| ACC_VOLATILE | 0x0040 | field |
+| ACC_BRIDGE | 0x0040 | method |
+| ACC_TRANSIENT | 0x0080 | field |
+| ACC_VARARGS | 0x0080 | method |
+| ACC_NATIVE | 0x0100 | method |
+| ACC_INTERFACE | 0x0200 | class, inner |
+| ACC_ABSTRACT | 0x0400 | class, inner, method |
+| ACC_STRICT | 0x0800 | method |
+| ACC_SYNTHETIC | 0x1000 | class, inner, field, method |
+| ACC_ANNOTATION | 0x2000 | class, inner |
+| ACC_ENUM | 0x4000 | class, inner, field |
+
+- ACC_SUPER：用于invokespecial指令而需要特殊处理的父类方法
+- ACC_BRIDGE：桥方法标志，有该标志的方法上同时有ACC_SYNTHETIC标志
+- ACC_STRICT：strictfp，strict float point，方法使用 FP-strict 浮点格式
+- ACC_SYNTHETIC：标志是由编译器生成的，源码中并没有
+
 6. this class
 当前类或接口，指向一个CONSTANT_Class_info常量，可以从中解析当前类的全限定名称。
 包名层次用/分割，而不是.，如java/lang/Object。
 
+7. super class
+
+8. interfaces
+
+9. fields
+```shell script
+field {
+  u2              access_flags;
+  u2              name_index;
+  u2              descriptor_index;
+  u2              attributes_count;
+  attribute_info  attributes[attributes_count];
+}
+```
+![avatar](./images/class/通过Classpy工具field.png)
+
+
+
+
+### 字节码指令集
+
+| 指令集大类 | 指令 | 描述 |
+| ---- | ---- | ---- |
+| 将常量压入栈 | aconst_null | 将null常量对象引用压入栈 |
+|  | iconst_m1 | 将int类型常量-1压入栈 |
+|  | iconst_0 | 将int类型常量0压入栈 |
+|  | iconst_1 | 将int类型常量1压入栈 |
+|  | lconst_0 | 将long类型常量0压入栈 |
+|  | lconst_1 | 将long类型常量1压入栈 |
+|  | fconst_0 | 将float类型常量0压入栈 |
+|  | fconst_1 | 将float类型常量1压入栈 |
+|  | dconst_0 | 将double类型常量0压入栈 |
+|  | dconst_1 | 将double类型常量1压入栈 |
+| 将基本类型压入栈 | bipush 59 | 将一个8位带符号整数压入栈（59的数值） |
+|  | sipush 300 | 将16位带符号整数压入栈（300的数值） |
+| 从栈中的局部变量中装载值的指令 | iload | 从局部变量中装载的int类型值 |
+|  | lload | 从局部变量中装载long类型值 |
+|  | fload | 从局部变量中装载float类型值 |
+|  | dload | 从局部变量中装载double类型值 |
+|  | aload | 从局部变量中装载引用类型值（refernce） |
+|  | iload_0 | 从局部变量0中装载int类型值 |
+|  | iload_2 | 从局部变量2中装载int类型值 |
+|  | lload_3 | 从局部变量3中装载long类型值 |
+|  | fload_2 | 从局部变量2中装载float类型值 |
+|  | dload_2 | 从局部变量2中装载double类型值 |
+|  | aload_0 | 从局部变量0中装载引用类型值 |
+| 从数组中装载数据 | iaload | 从数组中装载int类型值 |
+|  | laload | 从数组中装载long类型值 |
+|  | faload | 从数组中装载float类型值 |
+|  | daload | 从数组中装载double类型值 |
+|  | aaload | 从数组中装载引用类型值 |
+|  | baload | 从数组中装载byte类型或boolean类型值 |
+|  | caload | 从数组中装载char类型值 |
+|  | saload | 从数组中装载short类型值 |
+| 将栈中的值存入局部变量的指令 | istore | 将int类型值存入局部变量 |
+|  | lstore   | 将long类型值存入局部变量                      |
+|  | fstore   | 将float类型值存入局部变量                     |
+|  | dstore   | 将double类型值存入局部变量                    |
+|  | astore   | 将将引用类型或returnAddress类型值存入局部变量 |
+|  | istore_0 | 将int类型值存入局部变量0                      |
+|  | istore_1 | 将int类型值存入局部变量1                      |
+|  | istore_2 | 将int类型值存入局部变量2                      |
+|  | lstore_0 | 将long类型值存入局部变量0                     |
+|  | fstore_1 | 将float类型值存入局部变量1                    |
+|  | dstore_2 | 将double类型值存入局部变量2                   |
+|  | astore_0 | 将引用类型或returnAddress类型值存入局部变量0   |
+| 将数据存入数组中 | iastore | 将int类型值存入数组中                 |
+|  | lastore | 将long类型值存入数组中                |
+|  | fastore | 将float类型值存入数组中               |
+|  | dastore | 将double类型值存入数组中              |
+|  | aastore | 将引用类型值存入数组中                |
+|  | bastore | 将byte类型或者boolean类型值存入数组中 |
+|  | castore | 将char类型值存入数组中                |
+|  | sastore | 将short类型值存入数组中               |
+| 基本数据类型转换 | i2l | 把int类型的数据转化为long类型       |
+|  | i2f | 把int类型的数据转化为float类型      |
+|  | i2d | 把int类型的数据转化为double类型     |
+|  | l2i | 把long类型的数据转化为int类型       |
+|  | l2f | 把long类型的数据转化为float类型     |
+|  | l2d | 把long类型的数据转化为double类型    |
+|  | f2i | 把float类型的数据转化为int类型      |
+|  | f2l | 把float类型的数据转化为long类型     |
+|  | f2d | 把float类型的数据转化为double类型   |
+|  | d2i | 把double类型的数据转化为int类型     |
+|  | d2l | 把double类型的数据转化为long类型    |
+|  | d2f | 把double类型的数据转化为float类型   |
+|  | i2b | 把int类型的数据转化为byte类型       |
+|  | i2c | 把int类型的数据转化为char类型       |
+|  | i2s | 把int类型的数据转化为short类型      |
+| 逻辑运算-整数运算 | iadd | 执行int类型的加法                       |
+|  | ladd | 执行long类型的加法                      |
+|  | isub | 执行int类型的减法                       |
+|  | lsub | 执行long类型的减法                      |
+|  | imul | 执行int类型的乘法                       |
+|  | lmul | 执行long类型的乘法                      |
+|  | idiv | 执行int类型的除法                       |
+|  | ldiv | 执行long类型的除法                      |
+|  | irem | 计算int类型除法的余数                   |
+|  | lrem | 计算long类型除法的余数                  |
+|  | ineg | 对一个int类型值进行取反操作             |
+|  | lneg | 对一个long类型值进行取反操作            |
+|  | iinc | 把一个常量值加到一个int类型的局部变量上 |
+| 逻辑运算-浮点运算 | fadd | 执行float类型的加法        |
+|  | dadd | 执行double类型的加法       |
+|  | fsub | 执行float类型的减法        |
+|  | dsub | 执行double类型的减法       |
+|  | fmul | 执行float类型的乘法        |
+|  | dmul | 执行double类型的乘法       |
+|  | fdiv | 执行float类型的除法        |
+|  | ddiv | 执行double类型的除法       |
+|  | frem | 计算float类型除法的余数    |
+|  | drem | 计算double类型除法的余数   |
+|  | fneg | 将一个float类型的数值取反  |
+|  | dneg | 将一个double类型的数值取反 |
+| 逻辑运算-移位操作 | ishl  | 执行int类型的向左移位操作       |
+|  | lshl  | 执行long类型的向左移位操作      |
+|  | ishr  | 执行int类型的向右移位操作       |
+|  | lshr  | 执行long类型的向右移位操作      |
+|  | `iushr` | 执行int类型的向右逻辑移位操作   |
+|  | `lushr` | 执行long类型的向右逻辑移位操作  |
+| 逻辑运算-按位布尔运算 | iand | 对int类型值进行“逻辑与”操作      |
+|  | land | 对long类型值进行“逻辑与”操作     |
+|  | ior  | 对int类型值进行“逻辑或”操作      |
+|  | lor  | 对long类型值进行“逻辑或”操作     |
+|  | ixor | 对int类型值进行“逻辑异或”操作    |
+|  | lxor | 对long类型值进行“逻辑异或”操作   |
+| 对象操作指令 | new            | 创建一个新对象                             |
+|  | checkcast      | 确定对象为所给定的类型                     |
+|  | getfield       | 从对象中获取字段                           |
+|  | putfield       | 设置对象中字段的值                         |
+|  | getstatic      | 从类中获取静态字段                         |
+|  | putstatic      | 设置类中静态字段的值                       |
+|  | instanceof     | 判断对象是否为给定的类型                   |
+| 数组操作指令 | newarray       | 分配数据成员类型为基本上数据类型的新数组   |
+|  | anewarray      | 分配数据成员类型为引用类型的新数组         |
+|  | arraylength    | 获取数组长度                               |
+|  | multianewarray | 分配新的多维数组                           |
+| 控制流-条件分支指令 | ifeq      | 如果等于0，则跳转                                       |
+|  | ifne      | 如果不等于0，则跳转                                     |
+|  | iflt      | 如果小于0，则跳转                                       |
+|  | ifge      | 如果大于等于0，则跳转                                   |
+|  | ifgt      | 如果大于0，则跳转                                       |
+|  | ifle      | 如果小于等于0，则跳转                                   |
+|  | if_icmpcq | 如果两个int值相等，则跳转                               |
+|  | if_icmpne | 如果两个int类型值不相等，则跳转                         |
+|  | if_icmplt | 如果一个int类型值小于另外一个int类型值，则跳转          |
+|  | if_icmpge | 如果一个int类型值大于或者等于另外一个int类型值，则跳转  |
+|  | if_icmpgt | 如果一个int类型值大于另外一个int类型值，则跳转          |
+|  | if_icmple | 如果一个int类型值小于或者等于另外一个int类型值，则跳转  |
+|  | ifnull    | 如果等于null，则跳转                                    |
+|  | ifnonnull | 如果不等于null，则跳转                                  |
+|  | if_acmpeq | 如果两个对象引用相等，则跳转                            |
+|  | if_acmpnc | 如果两个对象引用不相等，则跳转                          |
+| 控制流-比较指令 | lcmp  | 比较long类型值                           |
+|  | fcmpl | 比较float类型值（当遇到NaN时，返回-1）   |
+|  | fcmpg | 比较float类型值（当遇到NaN时，返回1）    |
+|  | dcmpl | 比较double类型值（当遇到NaN时，返回-1）  |
+|  | dcmpg | 比较double类型值（当遇到NaN时，返回1）   |
+| 控制流-无条件转移指令 | goto   | 无条件跳转           |
+|  | goto_w | 无条件跳转（宽索引） |
+| 控制流-表跳转指令 | tableswitch  | 通过索引访问跳转表，并跳转              |
+|  | lookupswitch | 通过键值匹配访问跳转表，并执行跳转操作  |
+| 控制流-异常 | athrow  | 抛出异常或错误         |
+|  | finally | 子句                   |
+|  | jsr     | 跳转到子例程           |
+|  | jsr_w   | 跳转到子例程（宽索引） |
+|  | rct     | 从子例程返回           |
+
+
+
+
+
+
+
+ldc 把常量池中的项压入栈
+
+ldc_w 把常量池中的项压入栈（使用宽索引）
+
+ldc2_w 把常量池中long类型或者double类型的项压入栈（使用宽索引）
