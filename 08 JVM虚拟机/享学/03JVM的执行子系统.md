@@ -716,7 +716,7 @@ field {
 |  | ifnull    | 如果等于null，则跳转                                    |
 |  | ifnonnull | 如果不等于null，则跳转                                  |
 |  | if_acmpeq | 如果两个对象引用相等，则跳转                            |
-|  | if_acmpnc | 如果两个对象引用不相等，则跳转                          |
+|  | if_acmpne | 如果两个对象引用不相等，则跳转                          |
 | 控制流-比较指令 | lcmp  | 比较long类型值                           |
 |  | fcmpl | 比较float类型值（当遇到NaN时，返回-1）   |
 |  | fcmpg | 比较float类型值（当遇到NaN时，返回1）    |
@@ -775,7 +775,7 @@ JVM指令助记符
 | 有条件转移：                | ifeq,iflt,ifle,ifne,ifgt,ifge,ifnull,ifnonnull,if_icmpeq,if_icmpene,if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne,lcmp,fcmpl,fcmpg,dcmpl,dcmpg |
 | 复合条件转移：              | tableswitch,lookupswitch                                                                                                                                     |
 | 无条件转移：                | goto,goto_w,jsr,jsr_w,ret                                                                                                                                    |
-| 调度对象的实便方法：        | invokevirtual                                                                                                                                                |
+| 调度对象的实现方法：        | invokevirtual                                                                                                                                                |
 | 调用由接口实现的方法：      | invokeinterface                                                                                                                                              |
 | 调用需要特殊处理的实例方法：| invokespecial                                                                                                                                                |
 | 调用命名类中的静态方法：    | invokestatic                                                                                                                                                 |
@@ -783,21 +783,6 @@ JVM指令助记符
 | 异常：                      | athrow                                                                                                                                                       |
 | finally关键字的实现使用：   | jsr,jsr_w,ret                                                                                                                                                |
 
-
-#### 基于栈的字节码解释执行引擎
-- 基于栈的指令集 与 基于寄存器的指令集
-- 基于栈的解释执行过程：
-```java
-public class Test {
-    // TODO ...
-    public int calc () {
-        int a = 100;
-        int b = 200;
-        int c = 300;
-        return (a + b) * c;
-    }
-}
-```
 
 #### 类记载机制
 ![avatar](./images/class/类加载过程.png)
@@ -922,6 +907,162 @@ super class init
 某个特定的类加载器在接到加载类的请求时，首先将加载任务委托给父类加载器，一次递归，若父类加载器可以完成加载任务就成功返回；
 只有父类加载器无法完成加载，才自己加载。
 
+各个类加载器之间的关系是： 委托复合关系，不是继承关系。
+
+自定义类加载器时，通常重写 `findClass` 方法，`双亲委派` 在父类`ClassLoader` 的 `loadClass` 已经实现了。 
+```java
+package com.liyong.system;
+
+public class CustomClassLoader extends ClassLoader {
+
+	@Override
+	protected Class<?> findClass(String name) throws ClassNotFoundException {
+		return super.findClass(name);
+	}
+	
+}
+```
+有些特殊的业务情况，不想采用双亲委派机制进行类加载时，可以重写 `loadClass` 方法来破坏`双亲委派`。  
+
+> Java中怎么破坏双亲委派？ java.lang.Object线程上下文类加载器。
+
+> 重点分析，为什么Tomcat容器下的两个应用以及Tomcat的lib目录中都有UserServiceImpl类，Tomcat怎么保证类的隔离性？
+
+> 通过JDBC的加载，解释双亲委派的破坏
+
+
+#### 栈帧
+栈帧是一个抽象的概念，包含了很多内容，不仅仅包含一块内存，可能还有CPU高速缓存，具体由虚拟机决定。  
+
+一个栈帧包括
+- 局部变量表  
+不是方法定义了多少局部变量，局部变量表中就有多少个局部变量，可能会卸载不再使用的局部变量。  
+- 操作数栈
+- 动态连接
+- 方法返回地址
+
+#### 方法调用
+
+
+方法调用分两类：  
+- 解析  
+  类的静态方法，构造方法，私有方法的调用，通过解析指定。
+- 分派
+> - 静态分派
+> - 动态分派
+> - 动态分派的实现
+
+`静态分派` 代码演示：
+
+```java
+package com.liyong.system;
+
+public class StaticDispatch {
+	static abstract class Human {}
+	static class Man extends Human {}
+	static class Woman extends Human {}
+	
+	public void sayHello(Human human) {
+		System.out.println("Hello, human");
+	}
+	
+	public void sayHello(Man human) {
+		System.out.println("Hello, man");
+	}
+	
+	public void sayHello(Woman human) {
+		System.out.println("Hello, woman");
+	}
+	
+	public static void main(String[] args) {
+		Human h1 = new Man();
+		Human h2 = new Woman();
+		
+		StaticDispatch sd = new StaticDispatch();
+		sd.sayHello(h1);
+		sd.sayHello(h2);
+	}
+}
+```
+
+运行结果：
+```shell script
+Hello, human
+Hello, human
+```
+
+> 总结：演示类重载了 `sayHello` ，入参分别是  `Human` `Man` `Woman` 。
+> 创建实例时，是使用父类类型引用子类实例，引用类型称为 `静态类型` 。
+> Java方法重载调用时，是根据静态类型来匹配（引用类型），这就是方法调用中的分派-静态分派。
+
+分派 - `动态分派` 方法的重写，调用时根据具体实例调用具体的重写方法，这就是Java的 `动态分派`。
+
+
+动态分派的实现：
+![avatar](./images/class/方法调用-方法表.png) 
+> 动态分派时，存在虚方法表，虚拟机会根据虚方法表，找到对应的方法地址。
+> 如上图，未被重写的方法，在各自的虚方法表中，父子方法执行同一块 `方法地址`；
+> 而重写了的方法，父子虚方法表的指针执行各自的 `方法地址`。
+
+虚方法表： 虚拟机维护，维护各个方法的实际入口，就是方法区中的各个内存地址。
+
+一个类，一个虚方法表。
+
+对象的多态，就是又动态分派决定。
+
+解析、静态分派时在编译期就决定了的。
+
+
+#### 基于栈的字节码解释执行引擎
+- 基于栈的指令集 与 基于寄存器的指令集
+- 基于栈的解释执行过程：
+```java
+public class Test {
+    // TODO ...
+    public int calc () {
+        int a = 100;
+        int b = 200;
+        int c = 300;
+        return (a + b) * c;
+    }
+}
+```
+
+- 基于栈： 一个指令执行时，指令的大部分都是没有地址的，需要依赖操作数栈执行。  
+    基于栈的指令集，可移植
+```shell script
+// 1 + 1
+iconst_1
+iconst_1
+iadd
+```    
+- 基于寄存器： window x86就是基于寄存器的指令集。  
+    基于寄存器的指令集，和硬件比较紧密，执行速度快。
+```shell script
+// 1 + 1
+mov eax, 1
+add eax, 1
+```    
+
+> 如下代码，打印结果为false，通过字节码进行分析，为什么等于false
+```java
+package com.liyong.system;
+
+public class Exercise {
+	static void print(Exercise e1, Exercise e2) {
+		System.out.println(e1 == (e1 = e2));
+	}
+	
+	public static void main(String[] args) {
+		Exercise e1 = new Exercise();
+		Exercise e2 = new Exercise();
+		print(e1, e2);
+	}
+}
+```
+
+#### 根据实例对指令集进行分析
+![avatar](./images/class/Java指令集分析.png) 
 
 
 
