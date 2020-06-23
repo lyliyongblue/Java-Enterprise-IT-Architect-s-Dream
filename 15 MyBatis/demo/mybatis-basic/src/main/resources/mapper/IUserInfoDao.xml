@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yong.mybatis.basic.dao.IUserInfoDao">
+	<select id="selectUserInfo" resultType="UserInfo">
+		select * from USER_INFO where USER_ID = #{userId}
+	</select>
+
+	<insert id="insert" parameterType="UserInfo">
+		insert into USER_INFO
+		(USER_ID, USERNAME, PASSWORD, AGE)
+		values
+		(#{userId}, #{username}, #{password}, #{age})
+	</insert>
+</mapper>
