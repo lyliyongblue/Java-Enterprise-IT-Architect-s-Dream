@@ -281,8 +281,8 @@ mybatis-config.xml配置说明
 | 序号 | 属性名              | 说明 | 备注 |
 | ---- | ----               | ---- | ---- |
 | 1    | properties         | 定义配置，配置的属性可以在整个配置文件中其他位置进行引用; | 重要，优先使用 | property配置文件解耦 |
-| 2    | settings           | 设置，用于指定MyBatis的一些全局配置属性,这些属性非常重要，重要 ,后面专门说明 | 它们会改变MyBatis的运行时行为; |
-| 3    | typeAliases        | 别名，为Java类型设置-个短的名字 ，映射时方便使用;分为系统定可以通过xm和注解配置 | 义别名和自定义别名; |
+| 2    | settings           | 设置，用于指定MyBatis的一些全局配置属性,这些属性非常重要，后面专门说明 | 它们会改变MyBatis的运行时行为; |
+| 3    | typeAliases        | 别名，为Java类型设置一个短的名字 ，映射时方便使用;分为系统定可以通过xm和注解配置 | 义别名和自定义别名; |
 | 4    | typeHandlers       | 用于jdbcType与javaType之间的转换; | 无特殊需求不需要调整; | 后面专题说明 |
 | 5    | objectFactory      | MyBatis每次创建结果对象的新实例时,它都会使用对象工厂 | 大部分场景下无需修改 | (objectFactory)去构建POJO |
 | 6    | plugins            | 插件, MyBatis允许你在已映射的语句执行过程中的某-点进行拦截调用; | 后面专题说明 | 
