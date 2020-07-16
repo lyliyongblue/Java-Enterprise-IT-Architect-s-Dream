@@ -34,18 +34,18 @@
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/p0502/queue/impl" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p0505/io" />
+      <recent name="$PROJECT_DIR$/p0505/io/entry" />
       <recent name="$PROJECT_DIR$/p0502/retriever/mock" />
       <recent name="$PROJECT_DIR$/p0502" />
       <recent name="$PROJECT_DIR$/p0402/entry" />
-      <recent name="$PROJECT_DIR$/p0402" />
-      <recent name="$PROJECT_DIR$/p0402/entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p0502/queue/impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build hello/p0502/queue">
+  <component name="RunManager" selected="Go Build.go build hello/p0502/retriever">
     <configuration name="go build Persion.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hello" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -83,8 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build hello/p0502/queue" />
         <item itemvalue="Go Build.go build hello/p0502/retriever" />
+        <item itemvalue="Go Build.go build hello/p0502/queue" />
         <item itemvalue="Go Build.go build hello/p0402/entry" />
         <item itemvalue="Go Build.go build Persion.go" />
       </list>
@@ -102,22 +102,22 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1016@0.0.1920.1016" timestamp="1594909206814" />
-    <state width="1332" height="246" key="GridCell.Tab.0.bottom" timestamp="1594913883441">
+    <state width="1332" height="239" key="GridCell.Tab.0.bottom" timestamp="1594943490410">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1332" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
-    <state width="1332" height="246" key="GridCell.Tab.0.center" timestamp="1594913883441">
+    <state width="1332" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1594943490410" />
+    <state width="1332" height="239" key="GridCell.Tab.0.center" timestamp="1594943490409">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1332" height="246" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
-    <state width="1332" height="246" key="GridCell.Tab.0.left" timestamp="1594913883440">
+    <state width="1332" height="239" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1594943490409" />
+    <state width="1332" height="239" key="GridCell.Tab.0.left" timestamp="1594943490409">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1332" height="246" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883440" />
-    <state width="1332" height="246" key="GridCell.Tab.0.right" timestamp="1594913883441">
+    <state width="1332" height="239" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1594943490409" />
+    <state width="1332" height="239" key="GridCell.Tab.0.right" timestamp="1594943490410">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1332" height="246" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
+    <state width="1332" height="239" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1594943490410" />
     <state x="812" y="172" width="947" height="740" key="SettingsEditor" timestamp="1594905083342">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
@@ -126,9 +126,9 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="637" y="62" width="646" height="891" key="find.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911304417" />
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1594911552903">
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1594942376996">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911552903" />
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594942376996" />
   </component>
 </project>
