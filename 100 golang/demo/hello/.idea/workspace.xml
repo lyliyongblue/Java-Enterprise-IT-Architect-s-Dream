@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="02965b8f-2ce8-4049-86d1-eac6c2fa2ab7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/data/softwares/develop-tools/go" />
+  <component name="ProjectId" id="1ej7j2I0plCAYeXOKpxMFOn5yDl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/p0502/queue/impl" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p0502/queue/impl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p0502/retriever/mock" />
+      <recent name="$PROJECT_DIR$/p0502" />
+      <recent name="$PROJECT_DIR$/p0402/entry" />
+      <recent name="$PROJECT_DIR$/p0402" />
+      <recent name="$PROJECT_DIR$/p0402/entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build hello/p0502/queue">
+    <configuration name="go build Persion.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/p0402/Persion.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build hello/p0402/entry" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p0402/entry/Executer.go" />
+      <package value="hello/p0402/entry" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build hello/p0502/queue" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p0502/queue/main.go" />
+      <package value="hello/p0502/queue" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build hello/p0502/retriever" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p0502/retriever/main.go" />
+      <package value="hello/p0502/retriever" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build hello/p0502/queue" />
+        <item itemvalue="Go Build.go build hello/p0502/retriever" />
+        <item itemvalue="Go Build.go build hello/p0402/entry" />
+        <item itemvalue="Go Build.go build Persion.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1188" y="254" key="#Inspections" timestamp="1594903998930">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="1188" y="254" key="#Inspections/0.0.1920.1016@0.0.1920.1016" timestamp="1594903998930" />
+    <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser" timestamp="1594909206814">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1016@0.0.1920.1016" timestamp="1594909206814" />
+    <state width="1332" height="246" key="GridCell.Tab.0.bottom" timestamp="1594913883441">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
+    <state width="1332" height="246" key="GridCell.Tab.0.center" timestamp="1594913883441">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="246" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
+    <state width="1332" height="246" key="GridCell.Tab.0.left" timestamp="1594913883440">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="246" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883440" />
+    <state width="1332" height="246" key="GridCell.Tab.0.right" timestamp="1594913883441">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="246" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1594913883441" />
+    <state x="812" y="172" width="947" height="740" key="SettingsEditor" timestamp="1594905083342">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="812" y="172" width="947" height="740" key="SettingsEditor/0.0.1920.1016@0.0.1920.1016" timestamp="1594905083342" />
+    <state x="637" y="62" width="646" height="891" key="find.popup" timestamp="1594911304417">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="637" y="62" width="646" height="891" key="find.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911304417" />
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1594911552903">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911552903" />
+  </component>
+</project>
