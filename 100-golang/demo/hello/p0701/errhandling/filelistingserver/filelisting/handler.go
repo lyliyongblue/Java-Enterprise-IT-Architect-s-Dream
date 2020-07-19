@@ -1,24 +1,46 @@
 package filelisting
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
-func FileList(writer http.ResponseWriter, request *http.Request) {
-	path := request.URL.Path[len("/list/"):]
+const pref string = "/list/"
+
+// type可以定义个结构，也可以直接定义成一个string
+type userError string
+
+// 并且能对定义一个提供接口实现
+func (u userError) Error() string {
+	return u.Message()
+}
+
+func (u userError) Message() string {
+	return string(u)
+}
+
+func FileList(writer http.ResponseWriter, request *http.Request) error {
+	if strings.Index(request.URL.Path, pref) < 0 {
+		// fmt.Sprintf 可以构建一个字符串返回
+		// return errors.New(fmt.Sprintf("Path must start with %s", pref))
+		return userError(fmt.Sprintf("Path must start with %s", pref))
+	}
+	path := request.URL.Path[len(pref):]
 	file, err := os.Open(path)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer file.Close()
 	all, err := ioutil.ReadAll(file)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	_, err = writer.Write(all)
 	if err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }

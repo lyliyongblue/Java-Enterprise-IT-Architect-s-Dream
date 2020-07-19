@@ -14,7 +14,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/share/go" />
+  <component name="GOROOT" path="/data/softwares/develop-tools/go" />
   <component name="ProjectId" id="1ej7j2I0plCAYeXOKpxMFOn5yDl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,59 +46,49 @@
       <recent name="$PROJECT_DIR$/p0502" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build hello/p0701/errhandling/filelistingserver">
-    <configuration name="go build hello/p0502/retriever" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build yong.com/hello/p1001/channel">
+    <configuration name="go build web.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hello" />
       <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0502/retriever/main.go" />
-      <package value="hello/p0502/retriever" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build hello/p0601/functional/adder" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0601/functional/adder/main.go" />
-      <package value="hello/p0601/functional/adder" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build hello/p0601/functional/fib" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0601/functional/fib/fib.go" />
-      <package value="hello/p0601/functional/fib" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build hello/p0701/errhandling/defer" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0701/errhandling/defer/defer.go" />
-      <package value="hello/p0701/errhandling/defer" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build hello/p0701/errhandling/filelistingserver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
+      <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/p0701/errhandling/filelistingserver/web.go" />
-      <package value="hello/p0701/errhandling/filelistingserver" />
+      <package value="yong.com/hello" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p0701/errhandling/recover" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p0701/errhandling/recover/recover.go" />
+      <package value="yong.com/hello/p0701/errhandling/recover" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p0901/goroutine" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p0901/goroutine/goroutine.go" />
+      <package value="yong.com/hello/p0901/goroutine" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p1001/channel" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1001/channel/channel.go" />
+      <package value="yong.com/hello/p1001/channel" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build hello/p0701/errhandling/filelistingserver" />
-        <item itemvalue="Go Build.go build hello/p0701/errhandling/defer" />
-        <item itemvalue="Go Build.go build hello/p0601/functional/fib" />
-        <item itemvalue="Go Build.go build hello/p0601/functional/adder" />
-        <item itemvalue="Go Build.go build hello/p0502/retriever" />
+        <item itemvalue="Go Build.go build yong.com/hello/p1001/channel" />
+        <item itemvalue="Go Build.go build yong.com/hello/p0901/goroutine" />
+        <item itemvalue="Go Build.go build web.go" />
+        <item itemvalue="Go Build.go build yong.com/hello/p0701/errhandling/recover" />
       </list>
     </recent_temporary>
   </component>
@@ -106,30 +96,54 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="720" y="436" key="#GOROOT" timestamp="1595031793581">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="720" y="436" key="#GOROOT/0.0.1920.1016@0.0.1920.1016" timestamp="1595031793581" />
     <state x="1188" y="254" key="#Inspections" timestamp="1594988024558">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="1188" y="254" key="#Inspections/0.0.1920.1016@0.0.1920.1016" timestamp="1594988024558" />
+    <state x="424" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595031893031">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state x="424" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1016@0.0.1920.1016" timestamp="1595031893031" />
     <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser" timestamp="1594909206814">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1016@0.0.1920.1016" timestamp="1594909206814" />
-    <state width="1874" height="262" key="GridCell.Tab.0.bottom" timestamp="1594991074414">
+    <state width="1332" height="244" key="GridCell.Tab.0.bottom" timestamp="1595170508510">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1874" height="262" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1594991074414" />
-    <state width="1874" height="262" key="GridCell.Tab.0.center" timestamp="1594991074414">
+    <state width="1332" height="244" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595170508510" />
+    <state width="1332" height="244" key="GridCell.Tab.0.center" timestamp="1595170508509">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1874" height="262" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1594991074414" />
-    <state width="1874" height="262" key="GridCell.Tab.0.left" timestamp="1594991074414">
+    <state width="1332" height="244" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595170508509" />
+    <state width="1332" height="244" key="GridCell.Tab.0.left" timestamp="1595170508509">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1874" height="262" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1594991074414" />
-    <state width="1874" height="262" key="GridCell.Tab.0.right" timestamp="1594991074414">
+    <state width="1332" height="244" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595170508509" />
+    <state width="1332" height="244" key="GridCell.Tab.0.right" timestamp="1595170508509">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1874" height="262" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1594991074414" />
+    <state width="1332" height="244" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595170508509" />
+    <state width="1332" height="324" key="GridCell.Tab.1.bottom" timestamp="1595115681232">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="324" key="GridCell.Tab.1.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595115681232" />
+    <state width="1332" height="324" key="GridCell.Tab.1.center" timestamp="1595115681231">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="324" key="GridCell.Tab.1.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595115681231" />
+    <state width="1332" height="324" key="GridCell.Tab.1.left" timestamp="1595115681231">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="324" key="GridCell.Tab.1.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595115681231" />
+    <state width="1332" height="324" key="GridCell.Tab.1.right" timestamp="1595115681232">
+      <screen x="0" y="0" width="1920" height="1016" />
+    </state>
+    <state width="1332" height="324" key="GridCell.Tab.1.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595115681232" />
     <state x="812" y="172" width="947" height="740" key="SettingsEditor" timestamp="1594905083342">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
@@ -138,9 +152,9 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="637" y="62" width="646" height="891" key="find.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911304417" />
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1594991117736">
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1595170089076">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594991117736" />
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1595170089076" />
   </component>
 </project>
