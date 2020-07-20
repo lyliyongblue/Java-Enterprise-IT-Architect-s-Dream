@@ -14,7 +14,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/share/go" />
+  <component name="GOROOT" path="/data/softwares/develop-tools/go" />
   <component name="ProjectId" id="1ej7j2I0plCAYeXOKpxMFOn5yDl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -30,56 +30,32 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/p1001/channel/doneWaitGroup" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/p0502/queue/impl" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p1001/channel" />
       <recent name="$PROJECT_DIR$/p0601/functional/adder" />
       <recent name="$PROJECT_DIR$/p0505/io" />
       <recent name="$PROJECT_DIR$/p0505/io/entry" />
       <recent name="$PROJECT_DIR$/p0502/retriever/mock" />
-      <recent name="$PROJECT_DIR$/p0502" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/p1001/channel/doneWaitGroup" />
+      <recent name="$PROJECT_DIR$/p1001/channel/doneStruct" />
+      <recent name="$PROJECT_DIR$/p1001/channel/done" />
+      <recent name="$PROJECT_DIR$/p0502/queue/impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build hello/p1001/channel">
+  <component name="RunManager" selected="Go Build.go build yong.com/hello/p1001/channel/select">
     <configuration name="go build hello/p1001/channel" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hello" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/p1001/channel/channel.go" />
       <package value="hello/p1001/channel" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build web.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/p0701/errhandling/filelistingserver/web.go" />
-      <package value="yong.com/hello" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build yong.com/hello/p0701/errhandling/recover" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0701/errhandling/recover/recover.go" />
-      <package value="yong.com/hello/p0701/errhandling/recover" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build yong.com/hello/p0901/goroutine" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p0901/goroutine/goroutine.go" />
-      <package value="yong.com/hello/p0901/goroutine" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -92,13 +68,40 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go build yong.com/hello/p1001/channel/done" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1001/channel/done/done.go" />
+      <package value="yong.com/hello/p1001/channel/done" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p1001/channel/doneWaitGroup" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1001/channel/doneWaitGroup/done.go" />
+      <package value="yong.com/hello/p1001/channel/doneWaitGroup" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p1001/channel/select" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1001/channel/select/select.go" />
+      <package value="yong.com/hello/p1001/channel/select" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/select" />
+        <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/doneWaitGroup" />
+        <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/done" />
         <item itemvalue="Go Build.go build hello/p1001/channel" />
         <item itemvalue="Go Build.go build yong.com/hello/p1001/channel" />
-        <item itemvalue="Go Build.go build yong.com/hello/p0901/goroutine" />
-        <item itemvalue="Go Build.go build web.go" />
-        <item itemvalue="Go Build.go build yong.com/hello/p0701/errhandling/recover" />
       </list>
     </recent_temporary>
   </component>
@@ -106,10 +109,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="720" y="436" width="410" height="144" key="#GOROOT" timestamp="1595246971154">
+    <state x="720" y="436" width="479" height="144" key="#GOROOT" timestamp="1595253339829">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state x="720" y="436" width="410" height="144" key="#GOROOT/0.0.1920.1016@0.0.1920.1016" timestamp="1595246971154" />
+    <state x="720" y="436" width="479" height="144" key="#GOROOT/0.0.1920.1016@0.0.1920.1016" timestamp="1595253339829" />
     <state x="1188" y="254" key="#Inspections" timestamp="1595248784467">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
@@ -122,22 +125,22 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1016@0.0.1920.1016" timestamp="1594909206814" />
-    <state width="1234" height="262" key="GridCell.Tab.0.bottom" timestamp="1595250826476">
+    <state width="1874" height="250" key="GridCell.Tab.0.bottom" timestamp="1595258492667">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="262" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595250826476" />
-    <state width="1234" height="262" key="GridCell.Tab.0.center" timestamp="1595250826476">
+    <state width="1874" height="250" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595258492667" />
+    <state width="1874" height="250" key="GridCell.Tab.0.center" timestamp="1595258492667">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="262" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595250826476" />
-    <state width="1234" height="262" key="GridCell.Tab.0.left" timestamp="1595250826475">
+    <state width="1874" height="250" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595258492667" />
+    <state width="1874" height="250" key="GridCell.Tab.0.left" timestamp="1595258492666">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="262" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595250826475" />
-    <state width="1234" height="262" key="GridCell.Tab.0.right" timestamp="1595250826476">
+    <state width="1874" height="250" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595258492666" />
+    <state width="1874" height="250" key="GridCell.Tab.0.right" timestamp="1595258492667">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="262" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595250826476" />
+    <state width="1874" height="250" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595258492667" />
     <state width="1332" height="324" key="GridCell.Tab.1.bottom" timestamp="1595115681232">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
@@ -162,9 +165,9 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="637" y="62" width="646" height="891" key="find.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1594911304417" />
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1595250311998">
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1595256007546">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1595250311998" />
+    <state x="1384" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1016@0.0.1920.1016" timestamp="1595256007546" />
   </component>
 </project>
