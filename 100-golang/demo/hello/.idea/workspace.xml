@@ -14,7 +14,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/share/go" />
+  <component name="GOROOT" path="/data/softwares/develop-tools/go" />
   <component name="ProjectId" id="1ej7j2I0plCAYeXOKpxMFOn5yDl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,25 +49,7 @@
       <recent name="$PROJECT_DIR$/p0502/retriever/mock" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build yong.com/hello/p1005/atomic">
-    <configuration name="go build hello/p1001/channel" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p1001/channel/channel.go" />
-      <package value="hello/p1001/channel" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build yong.com/hello/p1001/channel/done" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hello" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/p1001/channel/done/done.go" />
-      <package value="yong.com/hello/p1001/channel/done" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build yong.com/hello/p1101/http2">
     <configuration name="go build yong.com/hello/p1001/channel/doneWaitGroup" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hello" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -95,13 +77,31 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go build yong.com/hello/p1101/http" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1101/http/http.go" />
+      <package value="yong.com/hello/p1101/http" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build yong.com/hello/p1101/http2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="hello" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/p1101/http2/http.go" />
+      <package value="yong.com/hello/p1101/http2" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build yong.com/hello/p1101/http2" />
+        <item itemvalue="Go Build.go build yong.com/hello/p1101/http" />
         <item itemvalue="Go Build.go build yong.com/hello/p1005/atomic" />
         <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/select" />
         <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/doneWaitGroup" />
-        <item itemvalue="Go Build.go build yong.com/hello/p1001/channel/done" />
-        <item itemvalue="Go Build.go build hello/p1001/channel" />
       </list>
     </recent_temporary>
   </component>
@@ -109,10 +109,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="720" y="436" width="479" height="144" key="#GOROOT" timestamp="1595328772695">
+    <state x="720" y="436" width="479" height="144" key="#GOROOT" timestamp="1595340767372">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state x="720" y="436" width="479" height="144" key="#GOROOT/0.0.1920.1016@0.0.1920.1016" timestamp="1595328772695" />
+    <state x="720" y="436" width="479" height="144" key="#GOROOT/0.0.1920.1016@0.0.1920.1016" timestamp="1595340767372" />
     <state x="1188" y="254" key="#Inspections" timestamp="1595248784467">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
@@ -125,22 +125,22 @@
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
     <state x="1446" y="315" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1016@0.0.1920.1016" timestamp="1594909206814" />
-    <state width="1234" height="225" key="GridCell.Tab.0.bottom" timestamp="1595335121514">
+    <state width="1874" height="250" key="GridCell.Tab.0.bottom" timestamp="1595345308048">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="225" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595335121514" />
-    <state width="1234" height="225" key="GridCell.Tab.0.center" timestamp="1595335121514">
+    <state width="1874" height="250" key="GridCell.Tab.0.bottom/0.0.1920.1016@0.0.1920.1016" timestamp="1595345308048" />
+    <state width="1874" height="250" key="GridCell.Tab.0.center" timestamp="1595345308048">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="225" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595335121514" />
-    <state width="1234" height="225" key="GridCell.Tab.0.left" timestamp="1595335121514">
+    <state width="1874" height="250" key="GridCell.Tab.0.center/0.0.1920.1016@0.0.1920.1016" timestamp="1595345308048" />
+    <state width="1874" height="250" key="GridCell.Tab.0.left" timestamp="1595345308048">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="225" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595335121514" />
-    <state width="1234" height="225" key="GridCell.Tab.0.right" timestamp="1595335121514">
+    <state width="1874" height="250" key="GridCell.Tab.0.left/0.0.1920.1016@0.0.1920.1016" timestamp="1595345308048" />
+    <state width="1874" height="250" key="GridCell.Tab.0.right" timestamp="1595345308048">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>
-    <state width="1234" height="225" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595335121514" />
+    <state width="1874" height="250" key="GridCell.Tab.0.right/0.0.1920.1016@0.0.1920.1016" timestamp="1595345308048" />
     <state width="1234" height="225" key="GridCell.Tab.1.bottom" timestamp="1595335121515">
       <screen x="0" y="0" width="1920" height="1016" />
     </state>

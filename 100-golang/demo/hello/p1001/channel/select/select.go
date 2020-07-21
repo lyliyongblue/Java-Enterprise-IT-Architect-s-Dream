@@ -38,7 +38,7 @@ func generator(init int) <-chan int {
 使用select来进行调度（通过channel通信CSP来实现内存数据共享）
 - select的使用
 - 定时器的使用
-- 在select中使用nil channel禁止想channel中送数据
+- 在select中使用nil channel禁止向channel中送数据
  */
 func main() {
 	var c1, c2 = generator(0), generator(100000)
