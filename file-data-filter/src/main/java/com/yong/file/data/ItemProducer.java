@@ -1,25 +1,31 @@
-package com.yong.file.data.producer;
+package com.yong.file.data;
 
-import com.yong.file.data.common.ICompleted;
 import com.yong.file.data.dto.Item;
 
 import java.io.*;
 import java.util.function.Consumer;
 
-public class FileItemProducer implements ItemProducer {
+/**
+ * 说明： 该生产者，通过done和receiver屏蔽了调度者的实现细节，生产者只需要关注生成item即可
+ */
+public class ItemProducer implements Runnable {
     private final File file;
     private final ICompleted done;
     private final Consumer<Item> receiver;
 
-    public FileItemProducer(File file, ICompleted done, Consumer<Item> receiver) {
+    /**
+     * 接收一个文件，用于产生Item实例，生成好的实例，通过调用receiver回传数据给调度者
+     * @param file 数据来源文件
+     * @param done 文件的数据处理完成，调用done来通知调度者处理完成
+     * @param receiver 产生Item对象后，通过调用receiver回传数据给调度者
+     */
+    public ItemProducer(File file, ICompleted done, Consumer<Item> receiver) {
         this.file = file;
         this.done = done;
         this.receiver = receiver;
     }
 
-    @Override
-    public void produce(File file, ICompleted done, Consumer<Item> receiver) {
-//        FileLoader fileLoader = FileLoaderFactory.getFileLoader(uri);
+    public void produce() {
         try (InputStream in = new FileInputStream(file);
              BufferedInputStream bufIn = new BufferedInputStream(in);
              InputStreamReader reader = new InputStreamReader(bufIn);
@@ -35,7 +41,7 @@ public class FileItemProducer implements ItemProducer {
                     receiver.accept(item);
                 }
                 line = bufReader.readLine();
-            } while (line == null);
+            } while (line != null);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -45,6 +51,6 @@ public class FileItemProducer implements ItemProducer {
 
     @Override
     public void run() {
-        produce(this.file, this.done, this.receiver);
+        produce();
     }
 }

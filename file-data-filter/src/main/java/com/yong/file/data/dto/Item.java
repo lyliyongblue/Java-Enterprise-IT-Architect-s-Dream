@@ -1,7 +1,5 @@
 package com.yong.file.data.dto;
 
-import java.util.Objects;
-
 /**
  * 数据条目，用于封装从文件中录入的一条完整数据
  * @author created by li.yong on 2020-07-27 23:08:40
@@ -46,17 +44,11 @@ public class Item {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return Float.compare(item.quota, quota) == 0 &&
-                Objects.equals(id, item.id) &&
-                Objects.equals(groupId, item.groupId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, groupId, quota);
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", quota=" + quota +
+                '}';
     }
 }

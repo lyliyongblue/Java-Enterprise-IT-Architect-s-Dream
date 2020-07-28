@@ -1,4 +1,4 @@
-package com.yong.file.data.file;
+package com.yong.file.data.dto;
 
 import java.io.File;
 import java.util.List;

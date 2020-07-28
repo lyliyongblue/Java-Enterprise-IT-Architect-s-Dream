@@ -16,5 +16,10 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="STANDARD_ENTERPRISE_REPO" />
+      <option name="name" value="STANDARD_ENTERPRISE_REPO" />
+      <option name="url" value="http://192.168.100.120:38000//repository/maven-public/" />
+    </remote-repository>
   </component>
 </project>
