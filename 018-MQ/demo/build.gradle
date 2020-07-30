@@ -1,0 +1,12 @@
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+}
+
