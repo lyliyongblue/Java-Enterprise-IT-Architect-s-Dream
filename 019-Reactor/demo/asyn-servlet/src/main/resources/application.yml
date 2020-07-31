@@ -1,0 +1,10 @@
+server:
+  tomcat:
+    connection-timeout: 100
+    max-connections: 10
+    max-threads: 10
+    accept-count: 1
+    max-http-form-post-size: 2MB
+
+
+spring:  mvc:    async:      request-timeout: 100    

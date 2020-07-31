@@ -1,0 +1,37 @@
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+*.settings
+*.project
+*.classpath
+/.gradle/
+**/.gradle/*
+**/bin/*
+dist_android/
+/*idea/
+**/out
+E06P00M00.iml
+/build/
+**/build/*
+**/target/*
+E06P05M00.iml
+/.metadata/
+*.iml

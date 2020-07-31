@@ -1,0 +1,26 @@
+include("asyn-servlet")
+include("reactor-flux-mono-demo")
+include("reactor-webflux-demo")
+include("spring-webflux")
+include("spring-webflux:springflux-outer-demo")
+include("spring-webflux:springmvc-provider-demo")
+include("spring-webflux-demo2")
+
+rootProject.children.each {project ->
+    println "${project.name}"
+    def size = project.children.size();
+    project.buildFileName = "${project.name}.gradle"
+    if(size > 0) {
+        project.children.each {_project ->
+            println "  ${_project.name}"
+            def _projectSize = _project.children.size();
+            _project.buildFileName = "${_project.name}.gradle"
+            if(_projectSize > 0) {
+                _project.children.each {__project ->
+                    println "    ${_project.name}"
+                    __project.buildFileName = "${__project.name}.gradle"
+                }
+            }
+        }
+    }
+}
