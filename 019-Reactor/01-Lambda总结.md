@@ -1,25 +1,29 @@
 ### 1、JDK自带了哪些通用函数式接口？
 ```java
-// 断言接口：接受一个入参，返回一个Boolean
-Predicate<Integer> predicate = data -> data > 0;
-
-// JDK自带消费者函数：接受一个入参，无返回值
-Consumer<String> consumer = str -> System.out.println(str);
-
-// JDK自带Function函数：接受一个入参，返回一个结果
-Function<Integer, Integer> function = data -> data * 2;
-
-// JDK自带提供者Supplier函数：无入参，返回一个数据
-Supplier<Double> supplier = () -> 20.00;
-
-// JDK自带一元函数UnaryOperator函数：一个入参，一个返回值，并且入参、返回值类型一致
-UnaryOperator<String> unaryOperator = str -> str.substring(str.length() / 2);
-
-// JDK自带BiFunction函数：2个入参，一个返回值
-BiFunction<Integer, Double, String> biFunction = (data1, data2) -> data1 + " -> " + data2;
-
-// JDK自带二元函数BinaryOperator：2个入参，一个返回值， 并且3个数据类型一致 
-BinaryOperator<Integer> binaryOperator = (data1, data2) -> data1 + data2;
+public class Test() {
+    public void test() {
+        // 断言接口：接受一个入参，返回一个Boolean
+        Predicate<Integer> predicate = data -> data > 0;
+        
+        // JDK自带消费者函数：接受一个入参，无返回值
+        Consumer<String> consumer = str -> System.out.println(str);
+        
+        // JDK自带Function函数：接受一个入参，返回一个结果
+        Function<Integer, Integer> function = data -> data * 2;
+        
+        // JDK自带提供者Supplier函数：无入参，返回一个数据
+        Supplier<Double> supplier = () -> 20.00;
+        
+        // JDK自带一元函数UnaryOperator函数：一个入参，一个返回值，并且入参、返回值类型一致
+        UnaryOperator<String> unaryOperator = str -> str.substring(str.length() / 2);
+        
+        // JDK自带BiFunction函数：2个入参，一个返回值
+        BiFunction<Integer, Double, String> biFunction = (data1, data2) -> data1 + " -> " + data2;
+        
+        // JDK自带二元函数BinaryOperator：2个入参，一个返回值， 并且3个数据类型一致 
+        BinaryOperator<Integer> binaryOperator = Integer::sum;
+    }
+}
 ```
 
 ### 2、Jdk函数接口的优势是什么？
@@ -27,36 +31,48 @@ BinaryOperator<Integer> binaryOperator = (data1, data2) -> data1 + data2;
 - 2、函数接口支持级联操作
 
 ```java
-BinaryOperator<Integer> binaryOperator = (data1, data2) -> data1 + data2;
-// 级联操作
-BiFunction<Integer, Integer, String> binaryOperatorFunction = binaryOperator.andThen(total -> total + " 元");
-System.out.println(binaryOperatorFunction.apply(12, 15));
+public class Test() {
+    public void test() {
+        BinaryOperator<Integer> binaryOperator = Integer::sum;
+        // 级联操作
+        BiFunction<Integer, Integer, String> binaryOperatorFunction = binaryOperator.andThen(total -> total + " 元");
+        System.out.println(binaryOperatorFunction.apply(12, 15));
+    }
+}
 ```
 
 ### 3、方法引用，在java中怎么进行方法引用？
 静态方法应用，使用类名直接应用方法
 
 ```java
-// 静态方法引用，通过类名直接指定方法
-Consumer<String> println = System.out::println;
-println.accept("Hello Method Refrence");
-
-// 静态方法引用，引用自定义的静态方法
-Person person = new Person("小可爱", 100);
-Consumer<Person> show = Person::show;
-Consumer<Person> showName = Person::showName;
-show.accept(person);
-showName.accept(person);
+public class Test() {
+    public void test() {
+        // 静态方法引用，通过类名直接指定方法
+        Consumer<String> println = System.out::println;
+        println.accept("Hello Method Refrence");
+        
+        // 静态方法引用，引用自定义的静态方法
+        Person person = new Person("小可爱", 100);
+        Consumer<Person> show = Person::show;
+        Consumer<Person> showName = Person::showName;
+        show.accept(person);
+        showName.accept(person);
+    }
+}
 ```
 
 成员方法引用，通过具体实例进行引用
 
 ```java
-// 创建实例
-Person person = new Person("小可爱", 100);
-// 成员方法引用，使用对象进行引用
-Consumer<Double> add = person::add;
-add.accept(Double.valueOf(20));
+public class Test() {
+    public void test() {
+        // 创建实例
+        Person person = new Person("小可爱", 100);
+        // 成员方法引用，使用对象进行引用
+        Consumer<Double> add = person::add;
+        add.accept(20d);
+    }
+}
 ```
 
 无论是静态方法引用，还是成员方法引用，我们都可以使用一个函数接口来对其进行引用，应用规则：
@@ -109,4 +125,3 @@ public class LambdaDemo {
 	}
 }
 ```
-
