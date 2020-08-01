@@ -27,6 +27,6 @@ hs_err_pid*
 **/bin/*
 dist_android/
 /*idea/
+*/.idea/*
 **/out
-E06P06M00.iml
 **/build/*

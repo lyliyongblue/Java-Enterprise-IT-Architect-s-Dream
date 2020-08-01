@@ -225,61 +225,68 @@ bufferWhile 则只有当 Predicate 返回 true 时才会收集，一旦值为 fa
 
 
 ```java
-System.out.println("-----------Flux.create buffer-----------");
-Flux.create(sink -> {
-	for (int i = 0; i < 20; i++) {
-        sink.next(i);
-        try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    }
-	sink.complete();
-}).buffer(5).subscribe(System.out::println);
-
-Flux.range(1, 100).buffer(10).subscribe(System.out::println);
-
-System.out.println("-----------Flux.create bufferTimeout-----------");
-Flux.create(sink -> {
-	for (int i = 0; i < 20; i++) {
-        sink.next(i);
-        try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    }
-	sink.complete();
-}).bufferTimeout(5, Duration.ofSeconds(2)).subscribe(System.out::println);
-
-System.out.println("-----------Flux.range bufferWhile-----------");
-Flux.range(1, 10).bufferWhile(data -> data%4 == 0).subscribe(System.out::println);
-
-System.out.println("-----------Flux.range bufferUntil-----------");
-Flux.range(1, 10).bufferUntil(data -> data%4 == 0).subscribe(System.out::println);
+public class Main {
+    public static void main(String args) {
+        System.out.println("-----------Flux.create buffer-----------");
+        Flux.create(sink -> {
+            for (int i = 0; i < 20; i++) {
+                sink.next(i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            sink.complete();
+        }).buffer(5).subscribe(System.out::println);
+        
+        Flux.range(1, 100).buffer(10).subscribe(System.out::println);
+        
+        System.out.println("-----------Flux.create bufferTimeout-----------");
+        Flux.create(sink -> {
+            for (int i = 0; i < 20; i++) {
+                sink.next(i);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            sink.complete();
+        }).bufferTimeout(5, Duration.ofSeconds(2)).subscribe(System.out::println);
+        
+        System.out.println("-----------Flux.range bufferWhile-----------");
+        Flux.range(1, 10).bufferWhile(data -> data%4 == 0).subscribe(System.out::println);
+        
+        System.out.println("-----------Flux.range bufferUntil-----------");
+        Flux.range(1, 10).bufferUntil(data -> data%4 == 0).subscribe(System.out::println);
+    }           
+}
 ```
 
 window
 
->
-window 操作符的作用类似于 buffer，所不同的是 window 操作符是把当前流中的元素收集到另外的 Flux 序列中，  
-因此返回值类型是 Flux<Flux>。  
-window可以指定个数截取，也可以根据时间片进行截取（时间窗口）  
+> window 操作符的作用类似于 buffer，所不同的是 window 操作符是把当前流中的元素收集到另外的 Flux 序列中，  
+> 因此返回值类型是 Flux<Flux>。  
+> window可以指定个数截取，也可以根据时间片进行截取（时间窗口）  
 
 
 ```java
-/*
- * window 操作符的作用类似于 buffer，所不同的是 window 操作符是把当前流中的元素收集到另外的 Flux 序列中，
- * 因此返回值类型是 Flux<Flux>。
- * window可以指定个数截取，也可以根据时间片进行截取（时间窗口）
- */
-System.out.println("-----------Flux.range window-----------");
-//  subscribe里面订阅到的数据其实是，Flux<T>，所以我们在该对象上再次订阅了
-Flux.range(1, 100).window(20).subscribe(flux -> flux.subscribe(System.out::println));
-Flux.interval(Duration.ofMillis(100)).window(Duration.ofMillis(1001)).subscribe(System.out::println);
-// 由于上面一行代码我们没有Limit，并且它是异步处理发布订阅，这里通过控制台输入来挂住主线程，让其可以持续生产、消费数据
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        /*
+         * window 操作符的作用类似于 buffer，所不同的是 window 操作符是把当前流中的元素收集到另外的 Flux 序列中，
+         * 因此返回值类型是 Flux<Flux>。
+         * window可以指定个数截取，也可以根据时间片进行截取（时间窗口）
+         */
+        System.out.println("-----------Flux.range window-----------");
+        //  subscribe里面订阅到的数据其实是，Flux<T>，所以我们在该对象上再次订阅了
+        Flux.range(1, 100).window(20).subscribe(flux -> flux.subscribe(System.out::println));
+        Flux.interval(Duration.ofMillis(100)).window(Duration.ofMillis(1001)).subscribe(System.out::println);
+        // 由于上面一行代码我们没有Limit，并且它是异步处理发布订阅，这里通过控制台输入来挂住主线程，让其可以持续生产、消费数据
+        System.in.read();
+    }
+}
 ```
 
 filter
@@ -288,64 +295,70 @@ filter
 filter 对流中包含的元素进行过滤，只留下满足 Predicate 指定条件的元素  
 
 ```java
-// filter 对流中包含的元素进行过滤，只留下满足 Predicate 指定条件的元素
-System.out.println("-----------Flux.range filter-----------");
-Flux.range(1, 10).filter(i -> i % 2 == 0).subscribe(System.out::println);
+public class Main {
+    public static void main(String args) {
+        // filter 对流中包含的元素进行过滤，只留下满足 Predicate 指定条件的元素
+        System.out.println("-----------Flux.range filter-----------");
+        Flux.range(1, 10).filter(i -> i % 2 == 0).subscribe(System.out::println);
+    }
+}
 ```
 
 zipWith
 
->
-zipWith 操作符把当前流中的元素与另外一个流中的元素按照一对一的方式进行合并。  
-在合并时可以不做任何处理，由此得到的是一个元素类型为 Tuple2 的流；  
-也可以通过一个 BiFunction 函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。  
+> zipWith 操作符把当前流中的元素与另外一个流中的元素按照一对一的方式进行合并。  
+> 在合并时可以不做任何处理，由此得到的是一个元素类型为 Tuple2 的流；  
+> 也可以通过一个 BiFunction 函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。  
 
 
 ```java
-/*
- * zipWith 操作符把当前流中的元素与另外一个流中的元素按照一对一的方式进行合并。
- * 在合并时可以不做任何处理，由此得到的是一个元素类型为 Tuple2 的流；
- * 也可以通过一个 BiFunction 函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。
- */
-System.out.println("-----------Flux zipWith-----------");
-/*
- * [a,c]
- * [b,d]
- */
-Flux.just("a", "b").zipWith(Flux.just("c", "d")).subscribe(System.out::println);
-
-/*
- * a -> c
- * b -> d
- */
-System.out.println("-----------Flux zipWith combine-----------");
-Flux.just("a", "b").zipWith(Flux.just("c", "d", "e"), (data1, data2) -> {
-	return data1 + " -> " + data2;
-}).subscribe(System.out::println);
-
-Mono.just(new ResponseBuilder())
-	//.publishOn(Schedulers.elastic())
-	.subscribeOn(Schedulers.elastic())
-	.zipWith(new ServiceA().queryAa())
-	.zipWith(new ServiceB().queryBb(), (builderAndResultAa, resultBb) -> {
-		// 模拟经过一系列的处理，最终得到我们需要的数据对象，并返回
-		ResponseBuilder builder = builderAndResultAa.getT1();
-		String result1 = builder.build(builderAndResultAa.getT2());
-		String result2 = builder.build(resultBb);
-		System.out.println(result1 + result2);
-		System.out.println("数据校验，数据处理完成");
-		return 100;
-	}).subscribe((data) -> {
-		// 将数据存盘
-		new LocalDbService().save(data);
-		System.out.println("存盘完成");
-	}, err -> {
-		
-	}, () -> {
-		System.out.println("通知完成");
-		// 处理完成后发消息到其他系统进行通知
-	});
-
+public class Main {
+    public static void main(String args) {
+        /*
+         * zipWith 操作符把当前流中的元素与另外一个流中的元素按照一对一的方式进行合并。
+         * 在合并时可以不做任何处理，由此得到的是一个元素类型为 Tuple2 的流；
+         * 也可以通过一个 BiFunction 函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。
+         */
+        System.out.println("-----------Flux zipWith-----------");
+        /*
+         * [a,c]
+         * [b,d]
+         */
+        Flux.just("a", "b").zipWith(Flux.just("c", "d")).subscribe(System.out::println);
+        
+        /*
+         * a -> c
+         * b -> d
+         */
+        System.out.println("-----------Flux zipWith combine-----------");
+        Flux.just("a", "b").zipWith(Flux.just("c", "d", "e"), (data1, data2) -> {
+            return data1 + " -> " + data2;
+        }).subscribe(System.out::println);
+        
+        Mono.just(new ResponseBuilder())
+            //.publishOn(Schedulers.elastic())
+            .subscribeOn(Schedulers.elastic())
+            .zipWith(new ServiceA().queryAa())
+            .zipWith(new ServiceB().queryBb(), (builderAndResultAa, resultBb) -> {
+                // 模拟经过一系列的处理，最终得到我们需要的数据对象，并返回
+                ResponseBuilder builder = builderAndResultAa.getT1();
+                String result1 = builder.build(builderAndResultAa.getT2());
+                String result2 = builder.build(resultBb);
+                System.out.println(result1 + result2);
+                System.out.println("数据校验，数据处理完成");
+                return 100;
+            }).subscribe((data) -> {
+                // 将数据存盘
+                new LocalDbService().save(data);
+                System.out.println("存盘完成");
+            }, err -> {
+                
+            }, () -> {
+                System.out.println("通知完成");
+                // 处理完成后发消息到其他系统进行通知
+            });
+    }
+}
 ```
 
 ```java
@@ -382,194 +395,206 @@ take
 >take 系列操作符用来从当前流中提取元素  
 
 ```java
-/*
- * take 系列操作符用来从当前流中提取元素
- */
-// take 按照指定的数量或时间间隔来提取
-System.out.println("-----------Flux range take-----------");
-Flux.range(1, 1000).take(10).subscribe(System.out::println);
-
-// 提取流中的最后 N 个元素
-System.out.println("-----------Flux range takeLast-----------");
-Flux.range(1, 1000).takeLast(10).subscribe(System.out::println);
-
-// 当 Predicate 返回 true 时才进行提取
-System.out.println("-----------Flux range takeWhile-----------");
-Flux.range(1, 1000).takeWhile(i -> i < 10).subscribe(System.out::println);
-
-// 提取元素直到 Predicate 返回 true
-System.out.println("-----------Flux range takeUntil-----------");
-Flux.range(1, 1000).takeUntil(i -> i == 10).subscribe(System.out::println);
-
-// 提取元素直到另外一个流开始产生元素
-// takeUntilOther(Publisher<?> other)
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        /*
+         * take 系列操作符用来从当前流中提取元素
+         */
+        // take 按照指定的数量或时间间隔来提取
+        System.out.println("-----------Flux range take-----------");
+        Flux.range(1, 1000).take(10).subscribe(System.out::println);
+        
+        // 提取流中的最后 N 个元素
+        System.out.println("-----------Flux range takeLast-----------");
+        Flux.range(1, 1000).takeLast(10).subscribe(System.out::println);
+        
+        // 当 Predicate 返回 true 时才进行提取
+        System.out.println("-----------Flux range takeWhile-----------");
+        Flux.range(1, 1000).takeWhile(i -> i < 10).subscribe(System.out::println);
+        
+        // 提取元素直到 Predicate 返回 true
+        System.out.println("-----------Flux range takeUntil-----------");
+        Flux.range(1, 1000).takeUntil(i -> i == 10).subscribe(System.out::println);
+        
+        // 提取元素直到另外一个流开始产生元素
+        // takeUntilOther(Publisher<?> other)
+        System.in.read();
+    }
+}
 ```
 
-reduce、reduceWith
+`reduce` `reduceWith`
 
->
-reduce 和 reduceWith 操作符对流中包含的所有元素进行累积操作，得到一个包含计算结果的 Mono 序列。  
-累积操作是通过一个 BiFunction 来表示的。  
-reduce 在操作时可以指定一个初始值。如果没有初始值，则序列的第一个元素作为初始值。  
-reduceWith 必须指定初始值  
+> reduce 和 reduceWith 操作符对流中包含的所有元素进行累积操作，得到一个包含计算结果的 Mono 序列。
+> 累积操作是通过一个 BiFunction 来表示的。
+> reduce 在操作时可以指定一个初始值。如果没有初始值，则序列的第一个元素作为初始值。
+> reduceWith 必须指定初始值
 
 ```java
-/*
- * reduce 和 reduceWith 操作符对流中包含的所有元素进行累积操作，得到一个包含计算结果的 Mono 序列。
- * 累积操作是通过一个 BiFunction 来表示的。
- * reduce 在操作时可以指定一个初始值。如果没有初始值，则序列的第一个元素作为初始值。
- * reduceWith 必须指定初始值
- */
-System.out.println("-----------Flux range reduce-----------");
-Flux.range(1, 100).reduce((x, y) -> x + y).subscribe(System.out::println);
-
-Flux.range(1, 100).reduceWith(() -> 10000, (x, y) -> x + y).subscribe(System.out::println);
-
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        /*
+         * reduce 和 reduceWith 操作符对流中包含的所有元素进行累积操作，得到一个包含计算结果的 Mono 序列。
+         * 累积操作是通过一个 BiFunction 来表示的。
+         * reduce 在操作时可以指定一个初始值。如果没有初始值，则序列的第一个元素作为初始值。
+         * reduceWith 必须指定初始值
+         */
+        System.out.println("-----------Flux range reduce-----------");
+        Flux.range(1, 100).reduce((x, y) -> x + y).subscribe(System.out::println);
+        Flux.range(1, 100).reduceWith(() -> 10000, (x, y) -> x + y).subscribe(System.out::println);
+        System.in.read();
+    }
+}
 ```
 
-merge、mergeSequential
+`merge` `mergeSequential`
 
->
-merge 和 mergeSequential 操作符用来把多个流合并成一个 Flux 序列。  
-不同之处在于 merge 按照所有流中元素的实际产生顺序来合并;  
-而 mergeSequential 则按照所有流被订阅的顺序，以流为单位进行合并。  
+> `merge`和`mergeSequential`操作符用来把多个流合并成一个Flux序列。 
+> 不同之处在于 merge 按照所有流中元素的实际产生顺序来合并;
+> 而mergeSequential 则按照所有流被订阅的顺序，以流为单位进行合并。  
 
->
-说明：   
-进行合并的流都是每隔 100 毫秒产生一个元素，不过第二个流中的每个元素的产生都比第一个流要延迟 50 毫秒。  
-在使用 merge 的结果流中，来自两个流的元素是按照时间顺序交织在一起；  
-而使用 mergeSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。  
-
+> 说明：   
+> 进行合并的流都是每隔 100 毫秒产生一个元素，不过第二个流中的每个元素的产生都比第一个流要延迟 50 毫秒。  
+> 在使用 merge 的结果流中，来自两个流的元素是按照时间顺序交织在一起；  
+> 而使用 mergeSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。  
 
 ```java
-/*
- * merge 和 mergeSequential 操作符用来把多个流合并成一个 Flux 序列。
- * 不同之处在于 merge 按照所有流中元素的实际产生顺序来合并;
- * 而 mergeSequential 则按照所有流被订阅的顺序，以流为单位进行合并。
- */
-/*
- * 说明： 进行合并的流都是每隔 100 毫秒产生一个元素，不过第二个流中的每个元素的产生都比第一个流要延迟 50 毫秒。
- * 在使用 merge 的结果流中，来自两个流的元素是按照时间顺序交织在一起；
- * 而使用 mergeSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。
- */
-// 0011223344
-Flux.merge(
-		Flux.interval(Duration.ofMillis(0), Duration.ofMillis(100)).take(5), 
-		Flux.interval(Duration.ofMillis(50), Duration.ofMillis(100)).take(5)
-	).subscribe(System.out::print);
-	
-// 0123401234
-Flux.mergeSequential(
-		Flux.interval(Duration.ofMillis(0), Duration.ofMillis(100)).take(5), 
-		Flux.interval(Duration.ofMillis(50), Duration.ofMillis(100)).take(5)
-	).subscribe(System.out::print);
-
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        /*
+         * merge 和 mergeSequential 操作符用来把多个流合并成一个 Flux 序列。
+         * 不同之处在于 merge 按照所有流中元素的实际产生顺序来合并;
+         * 而 mergeSequential 则按照所有流被订阅的顺序，以流为单位进行合并。
+         */
+        /*
+         * 说明： 进行合并的流都是每隔 100 毫秒产生一个元素，不过第二个流中的每个元素的产生都比第一个流要延迟 50 毫秒。
+         * 在使用 merge 的结果流中，来自两个流的元素是按照时间顺序交织在一起；
+         * 而使用 mergeSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。
+         */
+        // 0011223344
+        Flux.merge(
+                Flux.interval(Duration.ofMillis(0), Duration.ofMillis(100)).take(5), 
+                Flux.interval(Duration.ofMillis(50), Duration.ofMillis(100)).take(5)
+            ).subscribe(System.out::print);
+            
+        // 0123401234
+        Flux.mergeSequential(
+                Flux.interval(Duration.ofMillis(0), Duration.ofMillis(100)).take(5), 
+                Flux.interval(Duration.ofMillis(50), Duration.ofMillis(100)).take(5)
+            ).subscribe(System.out::print);
+        
+        System.in.read();
+    }
+}
 ```
 
-map
-
->
-map 用于对流数据进行处理，如下代码：对数值转换成字符串，并进行拼接  
+`map` 用于对流数据进行处理，如下代码：对数值转换成字符串，并进行拼接  
 
 ```java
-// map 用于对流数据进行处理，如下代码：对数值转换成字符串，并进行拼接
-Flux.just(6, 10).map(i -> "data: " + String.valueOf(i)).subscribe(System.out::println);
+public class Main {
+    public static void main(String args) {
+        // map 用于对流数据进行处理，如下代码：对数值转换成字符串，并进行拼接
+        Flux.just(6, 10).map(i -> "data: " + String.valueOf(i)).subscribe(System.out::println);
+    }
+}
 ```
 
-flatMap、flatMapSequential
+`flatMap` `flatMapSequential`
 
->
-flatMap 和 flatMapSequential 操作符用于将流拉平，   
-拉平：每个数据，经过处理后，可以产生N个元素返回，通过flatMap和flatMapSequential后，就可以将这每一个N合并成一个流  
-在使用 flatMap的结果流中，来自两个流的元素是按照时间顺序交织在一起；  
-而使用 flatMapSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。  
+> `flatMap` 和 `flatMapSequential` 操作符用于将流拉平，   
+> 拉平：每个数据，经过处理后，可以产生N个元素返回，通过`flatMap`和`flatMapSequential`后，就可以将这每一个N合并成一个流  
+> 在使用`flatMap`的结果流中，来自两个流的元素是按照时间顺序交织在一起；  
+> 而使用`flatMapSequential`的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。  
 
 ```java
-// flatMap 和 flatMapSequential 操作符用于将流拉平， 
-// 拉平：每个数据，经过处理后，可以产生N个元素返回，通过flatMap和flatMapSequential后，就可以将这每一个N合并成一个流
-// 在使用 flatMap的结果流中，来自两个流的元素是按照时间顺序交织在一起；
-// 而使用 flatMapSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。
-// 输出结果： 001122334456789
-Flux.just(5, 10)
-	.flatMap(x -> Flux.interval(Duration.ofMillis(x * 10), Duration.ofMillis(100)).take(x))
-	.subscribe(System.out::print);
-
-// 输出结果： 012340123456789
-Flux.just(5, 10)
-	.flatMapSequential(x -> Flux.interval(Duration.ofMillis(x * 10), Duration.ofMillis(100)).take(x))
-	.subscribe(System.out::print);
-
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        // flatMap 和 flatMapSequential 操作符用于将流拉平， 
+        // 拉平：每个数据，经过处理后，可以产生N个元素返回，通过flatMap和flatMapSequential后，就可以将这每一个N合并成一个流
+        // 在使用 flatMap的结果流中，来自两个流的元素是按照时间顺序交织在一起；
+        // 而使用 flatMapSequential 的结果流则是首先产生第一个流中的全部元素，再产生第二个流中的全部元素。
+        // 输出结果： 001122334456789
+        Flux.just(5, 10)
+            .flatMap(x -> Flux.interval(Duration.ofMillis(x * 10), Duration.ofMillis(100)).take(x))
+            .subscribe(System.out::print);
+        
+        // 输出结果： 012340123456789
+        Flux.just(5, 10)
+            .flatMapSequential(x -> Flux.interval(Duration.ofMillis(x * 10), Duration.ofMillis(100)).take(x))
+            .subscribe(System.out::print);
+        
+        System.in.read();
+    }
+}
 ```
 
-concatMap
+`concatMap`
 
->
-concatMap操作符的作用也是把流中的每个元素转换成一个流，再把所有流进行合并。  
-与 flatMap不同的是，concatMap 会根据原始流中的元素顺序依次把转换之后的流进行合并；  
-与 flatMapSequential 不同的是，concatMap 对转换之后的流的订阅是动态进行的，而 flatMapSequential 在合并之前就已经订阅了所有的流。  
+> `concatMap`操作符的作用也是把流中的每个元素转换成一个流，再把所有流进行合并。  
+> 与 `flatMap`不同的是，`concatMap` 会根据原始流中的元素顺序依次把转换之后的流进行合并；  
+> 与 `flatMapSequential` 不同的是，`concatMap` 对转换之后的流的订阅是动态进行的，而 `flatMapSequential` 在合并之前就已经订阅了所有的流。  
 
 ```java
-/*
- * concatMap操作符的作用也是把流中的每个元素转换成一个流，再把所有流进行合并。
- * 与 flatMap不同的是，concatMap 会根据原始流中的元素顺序依次把转换之后的流进行合并；
- * 与 flatMapSequential 不同的是，concatMap 对转换之后的流的订阅是动态进行的，而 flatMapSequential 在合并之前就已经订阅了所有的流。
- */
-Flux.just(5, 10)
-	.concatMap(x -> Flux.interval(Duration.ofMillis(x * 100), Duration.ofMillis(1000)).take(x))
-	.subscribe(System.out::print);
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        /*
+         * concatMap操作符的作用也是把流中的每个元素转换成一个流，再把所有流进行合并。
+         * 与 flatMap不同的是，concatMap 会根据原始流中的元素顺序依次把转换之后的流进行合并；
+         * 与 flatMapSequential 不同的是，concatMap 对转换之后的流的订阅是动态进行的，而 flatMapSequential 在合并之前就已经订阅了所有的流。
+         */
+        Flux.just(5, 10)
+            .concatMap(x -> Flux.interval(Duration.ofMillis(x * 100), Duration.ofMillis(1000)).take(x))
+            .subscribe(System.out::print);
+        System.in.read();
+    }
+}
 ```
 
 区别对比：  
-
-flatMapSequential  
+`flatMapSequential`  
 
 ![avatar](./images/flatMapSequential.gif)
 
-concatMap  
+`concatMap`  
 
 ![avatar](./images/concatMap.gif)
 
-从上面两张动态图片可以清楚看到flatMapSequential concatMap 拉平数据的处理区别:  
-flatMapSequential并发处理;   
-而concatMap顺序处理，使用的场景也不一样。  
+从上面两张动态图片可以清楚看到 `flatMapSequential` `concatMap` 拉平数据的处理区别:  
+`flatMapSequential` 并发处理;   
+而`concatMap`顺序处理，使用的场景也不一样。  
 
+`combineLatest`  
 
-
-combineLatest  
-
->
-combineLatest 操作符把所有流中的最新产生的元素合并成一个新的元素，作为返回结果流中的元素。  
-只要其中任何一个流中产生了新的元素，合并操作就会被执行一次，结果流中就会产生新的元素。  
+> `combineLatest` 操作符把所有流中的最新产生的元素合并成一个新的元素，作为返回结果流中的元素。  
+> 只要其中任何一个流中产生了新的元素，合并操作就会被执行一次，结果流中就会产生新的元素。  
 
 ```java
-// combineLatest 操作符把所有流中的最新产生的元素合并成一个新的元素，作为返回结果流中的元素。
-// 只要其中任何一个流中产生了新的元素，合并操作就会被执行一次，结果流中就会产生新的元素。
-// 输出结果为： [0, 0][0, 1][1, 1][1, 2][2, 2][2, 3][3, 3][3, 4][4, 4]
-Flux.combineLatest(
-        Arrays::toString,
-        Flux.interval(Duration.ofMillis(1000)).take(5),
-        Flux.interval(Duration.ofMillis(500), Duration.ofMillis(1000)).take(5)
-).subscribe(System.out::print);
-
-System.in.read();
+public class Main {
+    public static void main(String args) {
+        // combineLatest 操作符把所有流中的最新产生的元素合并成一个新的元素，作为返回结果流中的元素。
+        // 只要其中任何一个流中产生了新的元素，合并操作就会被执行一次，结果流中就会产生新的元素。
+        // 输出结果为： [0, 0][0, 1][1, 1][1, 2][2, 2][2, 3][3, 3][3, 4][4, 4]
+        Flux.combineLatest(
+                Arrays::toString,
+                Flux.interval(Duration.ofMillis(1000)).take(5),
+                Flux.interval(Duration.ofMillis(500), Duration.ofMillis(1000)).take(5)
+        ).subscribe(System.out::print);
+        
+        System.in.read();
+    }
+}
 ```
 
-handler
+`handler`
 
->
-handle 方法有些不同，它在 Mono 和 Flux 中都有。然而，它是一个实例方法 （instance method），意思就是它要链接在一个现有的源后使用（与其他操作符一样）。  
-它与 generate 比较类似，因为它也使用 SynchronousSink，并且只允许元素逐个发出。  
- 然而，handle 可被用于基于现有数据源中的元素生成任意值，有可能还会跳过一些元素。  
-  这样，可以把它当做 map 与 filter 的组合。  
+> handle 方法有些不同，它在 Mono 和 Flux 中都有，然而，它是一个实例方法 （instance method），意思就是它要链接在一个现有的源后使用（与其他操作符一样）。  
+> 它与 generate 比较类似，因为它也使用 SynchronousSink，并且只允许元素逐个发出。  
+> 然而，handle 可被用于基于现有数据源中的元素生成任意值，有可能还会跳过一些元素。  
+> 这样，可以把它当做 map 与 filter 的组合。  
   
 handle 方法签名如下：  
 
-```java
+```shell script
 handle(BiConsumer<T, SynchronousSink<R>>)
 ```
 
@@ -578,27 +603,33 @@ handle(BiConsumer<T, SynchronousSink<R>>)
 例如，下边的方法可以用于 Integer 序列，映射为字母或 null 。
 
 ```java
-public String alphabet(int letterNumber) {
-        if (letterNumber < 1 || letterNumber > 26) {
-                return null;
-        }
-        int letterIndexAscii = 'A' + letterNumber - 1;
-        return "" + (char) letterIndexAscii;
+public class Main {
+    public String alphabet(int letterNumber) {
+            if (letterNumber < 1 || letterNumber > 26) {
+                    return null;
+            }
+            int letterIndexAscii = 'A' + letterNumber - 1;
+            return "" + (char) letterIndexAscii;
+    }
 }
 ```
 
 我们可以使用 handle 来去掉其中的 null。
 
 ```java
-Flux<String> alphabet = Flux.just(-1, 30, 13, 9, 20)
-    .handle((i, sink) -> {
-        String letter = alphabet(i); 
-        if (letter != null) 
-            sink.next(letter); 
-    });
-
-alphabet.subscribe(System.out::println);
+public class Main {
+    public static void main(String args) {
+        Flux<String> alphabet = Flux.just(-1, 30, 13, 9, 20)
+            .handle((i, sink) -> {
+                String letter = alphabet(i); 
+                if (letter != null) {
+                    sink.next(letter);        
+                } 
+            });
+        
+        alphabet.subscribe(System.out::println);
+    }
+}
 ```
-
 
 
