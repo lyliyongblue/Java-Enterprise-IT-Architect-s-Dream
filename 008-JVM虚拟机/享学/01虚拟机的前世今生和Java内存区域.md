@@ -194,6 +194,7 @@ times: 21 ms
 
 ### 什么是逃逸分析？
 
+答案参见： https://zhuanlan.zhihu.com/p/69136675
 
 ### 虚拟机中对象的创建过程
 
