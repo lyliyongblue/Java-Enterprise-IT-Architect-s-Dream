@@ -1,0 +1,28 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.7.RELEASE' apply(false)
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply(false)
+}
+
+group = 'com.yong'
+
+subprojects {
+    if(project.childProjects.isEmpty()) {
+        apply plugin: 'java'
+        apply plugin: 'maven'
+        apply plugin: 'idea'
+        apply plugin: 'eclipse'
+        apply plugin: 'org.springframework.boot'
+        apply plugin: "io.spring.dependency-management"
+
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+
+        tasks.withType(JavaCompile) {
+            options.encoding = "UTF-8"
+        }
+    }
+}
+
+configure(allprojects) { project ->
+
+}

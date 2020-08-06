@@ -1,0 +1,18 @@
+//rootProject.name = 'transaction-demo'
+include "01spring-transaction"
+
+rootProject.children.each {project ->
+    def size = project.children.size();
+    project.buildFileName = "${project.name}.gradle"
+    if(size > 0) {
+        project.children.each {_project ->
+            def _projectSize = _project.children.size();
+            _project.buildFileName = "${_project.name}.gradle"
+            if(_projectSize > 0) {
+                _project.children.each {__project ->
+                    __project.buildFileName = "${__project.name}.gradle"
+                }
+            }
+        }
+    }
+}
