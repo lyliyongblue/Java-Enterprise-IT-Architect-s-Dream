@@ -1,4 +1,4 @@
-package com.yong.transaction;
+package com.yong.spring.jdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
