@@ -1,18 +1,14 @@
-package com.yong.spring.jdbc.entity;
+package com.yong.spring.data.jpa.vo;
 
-public class Employee {
-    private Long id;
+import javax.validation.constraints.NotBlank;
+
+public class AddUser {
+    @NotBlank(message = "FirstName 不能为空")
     private String firstName;
+    @NotBlank(message = "LastName 不能为空")
     private String lastName;
-    private String address;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @NotBlank(message = "年龄不能为空")
+    private Integer age;
 
     public String getFirstName() {
         return firstName;
@@ -30,11 +26,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

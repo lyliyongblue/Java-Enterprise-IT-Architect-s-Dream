@@ -1,9 +1,16 @@
-package com.yong.spring.jdbc.entity;
+package com.yong.spring.jdbc.vo;
 
-public class Employee {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class EmployeeVo {
+    @NotNull(message = "ID Not null")
     private Long id;
+    @NotBlank(message = "First Name not be null")
     private String firstName;
+    @NotBlank(message = "Last Name not be null")
     private String lastName;
+    @NotBlank(message = "Address not be null")
     private String address;
 
     public Long getId() {
