@@ -7,3 +7,12 @@ https://docs.spring.io/spring-data/jpa/docs/2.1.5.RELEASE/reference/html/#reposi
 
 
 spring jpa @NonNullApi 用法
+
+
+
+
+https://www.linzepeng.com/blog/jpa-note/
+
+
+https://blog.csdn.net/f4761/article/details/84622317
+https://juejin.im/post/6844904112409018375
