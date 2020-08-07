@@ -2,6 +2,7 @@ package com.yong.spring.data.jpa.service;
 
 import com.yong.spring.data.jpa.domain.User;
 import com.yong.spring.data.jpa.repository.UserRepository;
+import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,9 @@ public class UserService {
     }
 
     public Optional<User> get(Long userId) {
-        return userRepository.findById(userId);
+        Optional<User> optional = userRepository.findById(userId);
+        optional.ifPresent(userRepository::printUser);
+        return optional;
     }
 
     /** 派生计数查询 */
@@ -45,4 +48,6 @@ public class UserService {
     public void add(Iterable<User> users) {
         userRepository.saveAll(users);
     }
+
+
 }

@@ -1,7 +1,16 @@
 package com.yong.spring.data.jpa.domain;
 
+import com.yong.spring.data.jpa.repository.aggregate.TestEvent;
+import org.springframework.data.domain.AfterDomainEventPublication;
+import org.springframework.data.domain.DomainEvents;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity(name = "USER")
 public class User {
@@ -60,5 +69,28 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    /** 领域驱动模式时，发送驱动事件 */
+    @DomainEvents
+    public Collection<Object> domainEvents() {
+        return Stream.of(new TestEvent(this)).collect(Collectors.toList());
+    }
+
+    @AfterDomainEventPublication
+    public void callbackMethod() {
+        System.err.println("领域驱动事件处理完成， user: " + getUserId());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                '}';
     }
 }
