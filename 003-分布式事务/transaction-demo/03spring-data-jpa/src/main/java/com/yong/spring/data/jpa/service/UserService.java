@@ -2,8 +2,7 @@ package com.yong.spring.data.jpa.service;
 
 import com.yong.spring.data.jpa.domain.User;
 import com.yong.spring.data.jpa.repository.UserRepository;
-import org.springframework.data.domain.AfterDomainEventPublication;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,11 @@ public class UserService {
         pageNo = Math.max(0, pageNo);
         pageSize = Math.max(5, pageSize);
         pageSize = Math.min(pageSize, 200);
-        return userRepository.queryByCreatedTimeBetween(start, end, PageRequest.of(pageNo, pageSize));
+        return userRepository.queryByCreatedTimeBetween(start, end, PageRequest.of(pageNo, pageSize)).getContent();
+    }
+
+    public Page<User> queryByCreatedTime(LocalDateTime start, LocalDateTime end, Pageable pageable) {
+        return userRepository.queryByCreatedTimeBetween(start, end, pageable);
     }
 
     public Optional<User> get(Long userId) {
