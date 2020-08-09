@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/09spring_dtx_jpa_jms_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  activemq:
+    broker-url: tcp://localhost:61616

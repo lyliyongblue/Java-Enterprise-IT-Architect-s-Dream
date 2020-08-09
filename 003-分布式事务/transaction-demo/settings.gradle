@@ -2,6 +2,13 @@
 include "01spring-jdbc"
 include "02spring-data-jdbc"
 include "03spring-data-jpa"
+include "04spring-jms"
+include "05spring-jta"
+include "05spring-mysql-jms-jta"
+include "07spring-dtx-db-db"
+include "08spring-dtx-jpa-db-db"
+include "09spring-dtx-jpa-jms-db"
+include "10spring-msg-jms-db"
 
 rootProject.children.each {project ->
     def size = project.children.size()

@@ -1,0 +1,13 @@
+spring:
+  user-datasource:
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/07spring_dtx_db_db_user
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  order-datasource:
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/07spring_dtx_db_db_order
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    property-naming-strategy: SNAKE_CASE
