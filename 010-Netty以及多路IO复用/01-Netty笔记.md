@@ -36,13 +36,13 @@ pipeline . addLast("idle", new IdleStateHandLer(hashedWheelTimer, 5, 5, 10));
 //可读长度必须大于基本长度
 if(buffer. readableBytes() >= BASE LENTH){
     //防止socket字节唬攻击
-    if(buffer. readableBytes() > 2048){
-        buffer. skipBytes(buffer. readableBytes());
+    if(buffer.readableBytes() > 2048){
+        buffer.skipBytes(buffer. readableBytes());
     }
     //记录包头开始的index
     int beginReader;
     while(true){
-        beginReader = buffer. reader Index();
+        beginReader = buffer.readerIndex();
         buffer. markReaderIndex();
         if(buffer. readInt() == ConstantValue. FLAG){
             break;
