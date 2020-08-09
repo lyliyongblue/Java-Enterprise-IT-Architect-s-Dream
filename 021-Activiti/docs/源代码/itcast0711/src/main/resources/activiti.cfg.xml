@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<!-- 
+		ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration();
+		//连接数据库的配置
+		processEngineConfiguration.setJdbcDriver("com.mysql.jdbc.Driver");
+		processEngineConfiguration.setJdbcUrl("jdbc:mysql://localhost:3306/itcast0711activiti?useUnicode=true&characterEncoding=utf8");
+		processEngineConfiguration.setJdbcUsername("root");
+		processEngineConfiguration.setJdbcPassword("root");
+		
+		/**
+		 	public static final String DB_SCHEMA_UPDATE_FALSE = "false";不能自动创建表，需要表存在
+  			public static final String DB_SCHEMA_UPDATE_CREATE_DROP = "create-drop";先删除表再创建表
+  			public static final String DB_SCHEMA_UPDATE_TRUE = "true";如果表不存在，自动创建表
+		 */
+		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+	 -->
+	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+		<!-- 连接数据的配置 -->
+		<property name="jdbcDriver" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/itcast0711activiti?useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="jdbcUsername" value="root"></property>
+		<property name="jdbcPassword" value="root"></property>
+		<!-- 没有表创建表 -->
+		<property name="databaseSchemaUpdate" value="true"></property>
+	</bean>
+
+</beans>

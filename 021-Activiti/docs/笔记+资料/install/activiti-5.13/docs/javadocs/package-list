@@ -1,0 +1,13 @@
+org.activiti.engine
+org.activiti.engine.delegate
+org.activiti.engine.form
+org.activiti.engine.history
+org.activiti.engine.identity
+org.activiti.engine.management
+org.activiti.engine.parse
+org.activiti.engine.query
+org.activiti.engine.repository
+org.activiti.engine.runtime
+org.activiti.engine.task
+org.activiti.engine.test
+org.activiti.engine.test.mock

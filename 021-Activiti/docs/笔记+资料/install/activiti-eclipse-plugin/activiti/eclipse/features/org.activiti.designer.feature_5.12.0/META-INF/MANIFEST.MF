@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: trademakers
+Build-Jdk: 1.7.0_06
+Created-By: Apache Maven
+Archiver-Version: Plexus Archiver
+
