@@ -1,0 +1,26 @@
+include "dubbo"
+include "dubbo:course-service"
+include "dubbo:course-service-provider"
+
+include "course-edge-api"
+
+rootProject.children.each {project ->
+    // println "scanning ... ${project.name}"
+    project.buildFileName = "${project.name}.gradle"
+    renameChildBuildName(project)
+}
+
+def renameChildBuildName(project) {
+    def size = project.children.size()
+    if(size <= 0) {
+        return
+    }
+    project.children.each {childProject ->
+        // println "scanning ... ${childProject.name}"
+        childProject.buildFileName = "${childProject.name}.gradle"
+        def childChildProjectSize = childProject.children.size()
+        if(childChildProjectSize > 0) {
+            renameChildBuildName(childProject)
+        }
+    }
+}

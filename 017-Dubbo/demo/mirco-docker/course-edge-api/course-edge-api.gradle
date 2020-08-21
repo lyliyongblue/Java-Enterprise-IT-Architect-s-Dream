@@ -1,0 +1,14 @@
+dependencies {
+    implementation project(":dubbo:course-service-provider")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.apache.dubbo:dubbo-spring-boot-starter:${dubbo_version}")
+    implementation("org.apache.dubbo:dubbo:${dubbo_version}")
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

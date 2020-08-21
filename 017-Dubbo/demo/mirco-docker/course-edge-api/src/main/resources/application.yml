@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: course-edge-api
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address: zookeeper://192.168.50.190:2181
+    group: local
+  scan:
+    base-packages:

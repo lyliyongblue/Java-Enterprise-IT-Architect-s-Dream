@@ -1,0 +1,14 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+
+    apply plugin: "io.spring.dependency-management"
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
