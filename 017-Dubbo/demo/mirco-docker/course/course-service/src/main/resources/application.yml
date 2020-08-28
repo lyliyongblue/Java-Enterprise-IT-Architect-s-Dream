@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: course-service
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address: zookeeper://192.168.0.109:2181
+    group: local
