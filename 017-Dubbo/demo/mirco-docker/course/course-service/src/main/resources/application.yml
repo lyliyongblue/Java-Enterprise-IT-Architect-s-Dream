@@ -6,5 +6,5 @@ dubbo:
   application:
     name: ${spring.application.name}
   registry:
-    address: zookeeper://192.168.0.109:2181
+    address: zookeeper://192.168.150.160:2181
     group: local

@@ -3,6 +3,14 @@ include "course:course-service"
 include "course:course-service-provider"
 include "course:course-edge-api"
 
+include "user"
+include "user:user-service"
+include "user:user-service-provider"
+include "user:user-edge-api"
+
+include "gateway"
+include "gateway:micro-gateway-server"
+
 rootProject.children.each {project ->
     // println "scanning ... ${project.name}"
     project.buildFileName = "${project.name}.gradle"
