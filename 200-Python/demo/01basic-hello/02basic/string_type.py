@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# _*_ coding: utf-8 _*_
+# -*- coding: utf-8 -*-
+
 print('中文 English')
 
 # ord()函数获取字符的整数表示
@@ -45,4 +46,20 @@ print(len(b'\xe4\xb8\xad\xe6\x96\x87'))
 # 6
 print(len('中文'.encode('utf-8')))
 # 6
+
+# 字符串格式化, 字符串里面的%是一个普通字符怎么办？这个时候就需要转义，用%%来表示一个%
+print("Hello, %s" % "World")
+# Hello, World
+print("Hi, %s, you are %s" % ("LiYong", "Good"))
+# Hi, LiYong, you are Good
+
+# 使用format格式化字符串
+print("Hello, {0}, 工资为 {1:.1f}".format("yong", 100.2350))
+# Hello, yong, 工资为 100.2
+
+# f-string，可以通过参数名进行替换
+name = 'li.yong'
+salary = 100.231
+print(f'Hi, {name}, salary is {salary:.1f}')
+# Hi, li.yong, salary is 100.2
 
