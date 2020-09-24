@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- contextQualifierLength=14 -->
+<!-- contextQualifierLength=14 -->
+<feature
+      id="org.eclipse.graphiti.feature"
+      label="%featureName"
+      version="0.9.2.v20130211-0913"
+      provider-name="%providerName"
+      plugin="org.eclipse.graphiti.ui">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.eclipse.graphiti"
+         download-size="0"
+         install-size="0"
+         version="0.9.2.v20130211-0913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.graphiti.ui"
+         download-size="0"
+         install-size="0"
+         version="0.9.2.v20130211-0913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.graphiti.mm"
+         download-size="0"
+         install-size="0"
+         version="0.9.2.v20130211-0913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.graphiti.pattern"
+         download-size="0"
+         install-size="0"
+         version="0.9.2.v20130211-0913"
+         unpack="false"/>
+
+</feature>
