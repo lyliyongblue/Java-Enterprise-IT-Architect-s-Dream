@@ -1,0 +1,22 @@
+{
+  "name": "02-pachong",
+  "version": "1.0.0",
+  "description": "爬虫项目",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/crowller.ts"
+  },
+  "keywords": [],
+  "author": "li.yong",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.21",
+    "@types/superagent": "^4.1.10",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "superagent": "^6.1.0"
+  }
+}
